@@ -1,0 +1,106 @@
+
+--- Job Linear.gms Start 04/03/20 15:35:08 30.3.0 rc5da09e WEX-WEI x86 64bit/MS Windows
+--- GAMS Parameters defined
+    Input C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\Linear.gms
+    PageWidth 80
+    PageSize 0
+    PageContr 3
+    Action CE
+    ScrDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\225a\
+    SysDir C:\GAMS\win64\30.3\
+    WorkDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\
+    LogOption 3
+    DFormat 0
+    TFormat 0
+    ErrorLog 99
+    LimRow 50
+    IDE 1
+GAMS 30.3.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+          Dept. of Chemical Engineering                              DCE375
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- Linear.gms(1) 2 Mb
+--- . cycle.inc(10) 3 Mb
+--- Linear.gms(24) 3 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- Linear.gms(30) 4 Mb
+--- Generating MIP model stableset
+--- Linear.gms(32) 4 Mb
+---   6 rows  6 columns  16 non-zeroes
+---   5 discrete-columns
+--- Executing GUROBI: elapsed 0:00:00.126
+
+Gurobi           30.3.0 rc5da09e Released Mar 06, 2020 WEI x86 64bit/MS Window
+
+Academic license - for non-commercial use only
+GAMS/Gurobi demo/community requires a Gurobi license from Gurobi Optimization.
+Gurobi library version 9.0.1
+Starting Gurobi...
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 5 rows, 5 columns and 10 nonzeros
+Model fingerprint: 0xf4c36e64
+Variable types: 0 continuous, 5 integer (5 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 2.0000000
+Presolve time: 0.00s
+Presolved: 5 rows, 5 columns, 10 nonzeros
+Variable types: 0 continuous, 5 integer (5 binary)
+
+Root relaxation: cutoff, 2 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0         2.00000    2.00000  0.00%     -    0s
+
+Explored 0 nodes (2 simplex iterations) in 0.01 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 2 
+
+Optimal solution found (tolerance 1.00e-01)
+Best objective 2.000000000000e+00, best bound 2.000000000000e+00, gap 0.0000%
+
+User-callback calls 39, time in user-callback 0.00 sec
+MIP status(2): Model was solved to optimality (subject to tolerances).
+
+Solving fixed MIP.
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 5 rows, 5 columns and 10 nonzeros
+Model fingerprint: 0x1235d39c
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 5 rows and 5 columns
+Presolve time: 0.02s
+Presolve: All rows and columns removed
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    2.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved in 0 iterations and 0.02 seconds
+Optimal objective  2.000000000e+00
+
+User-callback calls 66, time in user-callback 0.00 sec
+Fixed MIP status(2): Model was solved to optimality (subject to tolerances).
+
+MIP   Solution:          2.000000    (2 iterations, 0 nodes)
+Final Solve:             2.000000    (0 iterations)
+
+Best possible:           2.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- Linear.gms(32) 2 Mb
+--- Reading solution for model stableset
+--- Executing after solve: elapsed 0:00:00.314
+--- Linear.gms(34) 3 Mb
+*** Status: Normal completion
+--- Job Linear.gms Stop 04/03/20 15:35:08 elapsed 0:00:00.326

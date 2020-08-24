@@ -1,0 +1,1200 @@
+0
+5
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.206976910071337 GHz
+At s= 0.4
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.038723751770884 GHz
+At s= 0.36
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.037538833956506 GHz
+At s= 0.357
+simulation took 0.1239 sec
+1
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086749 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864004123 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507145498 GHz
+At s= 0.214
+simulation took 0.2799 sec
+2
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.72510606908682 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010945 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507155445 GHz
+At s= 0.214
+simulation took 0.1240 sec
+3
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.056896764436189 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0640644456607191 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0515234193904206 GHz
+At s= 0.195
+simulation took 0.8939 sec
+4
+10
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0581478756796798 GHz
+At s= 0.2
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.005245798764463 GHz
+At s= 0.19
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0039350036577872 GHz
+At s= 0.188
+simulation took 3.2601 sec
+5
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427076636 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606747 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238985 GHz
+At s= 0.237
+simulation took 0.1552 sec
+6
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606604 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389923 GHz
+At s= 0.237
+simulation took 0.0773 sec
+7
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0568967644355212 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0640644456592128 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0515234193905627 GHz
+At s= 0.195
+simulation took 0.8076 sec
+8
+10
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0041633601473734 GHz
+At s= 0.2
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8598880078749715 GHz
+At s= 0.19
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8561644603942682 GHz
+At s= 0.188
+simulation took 3.4665 sec
+9
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125137854 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125137854 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868338633 GHz
+At s= 0.203
+simulation took 0.3643 sec
+10
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707763 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660888 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389284 GHz
+At s= 0.237
+simulation took 0.1955 sec
+11
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427076636 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606747 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238985 GHz
+At s= 0.237
+simulation took 0.1459 sec
+12
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596609873 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238644 GHz
+At s= 0.237
+simulation took 0.1515 sec
+13
+10
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0041633601479703 GHz
+At s= 0.2
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8598880078746731 GHz
+At s= 0.19
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8561644603947371 GHz
+At s= 0.188
+simulation took 3.4719 sec
+14
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707607 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606462 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238772 GHz
+At s= 0.237
+simulation took 0.1477 sec
+15
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690861948 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010234 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507153171 GHz
+At s= 0.214
+simulation took 0.3082 sec
+16
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077276 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606747 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002387863 GHz
+At s= 0.237
+simulation took 0.1459 sec
+17
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086742 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010945 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507154308 GHz
+At s= 0.214
+simulation took 0.1480 sec
+18
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690869622 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864011655 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507155445 GHz
+At s= 0.214
+simulation took 0.1932 sec
+19
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077134 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660625 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002390207 GHz
+At s= 0.237
+simulation took 0.1455 sec
+20
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660568 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.02789260023912 GHz
+At s= 0.237
+simulation took 0.0954 sec
+21
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690863653 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010234 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507149335 GHz
+At s= 0.214
+simulation took 0.2651 sec
+22
+10
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.058798312201958 GHz
+At s= 0.2
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0098918099693037 GHz
+At s= 0.19
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0076840085579306 GHz
+At s= 0.188
+simulation took 3.3399 sec
+23
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125143538 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125143538 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868332807 GHz
+At s= 0.203
+simulation took 0.3948 sec
+24
+9
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.1158896383490884 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.0917976733768882 GHz
+At s= 0.19
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.0904704434979067 GHz
+At s= 0.192
+simulation took 0.8794 sec
+25
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690868911 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010945 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507153882 GHz
+At s= 0.214
+simulation took 0.1933 sec
+26
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0568967644359901 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0640644456613444 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0515234193904348 GHz
+At s= 0.195
+simulation took 0.9059 sec
+27
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690864506 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.674541286400995 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507155019 GHz
+At s= 0.214
+simulation took 0.3442 sec
+28
+10
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0012101671232472 GHz
+At s= 0.2
+Minimup gap computed with 4th eigenvalue
+Minimup gap: 2.1729937206320358 GHz
+At s= 0.23
+Minimup gap computed with 4th eigenvalue
+Minimup gap: 2.169186163753494 GHz
+At s= 0.225
+simulation took 3.4420 sec
+29
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077276 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606747 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002387863 GHz
+At s= 0.237
+simulation took 0.1477 sec
+30
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427078413 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596608026 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002390136 GHz
+At s= 0.237
+simulation took 0.1411 sec
+31
+11
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.9739792896754977 GHz
+At s= 0.2
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8316463458888563 GHz
+At s= 0.19
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.824005648726967 GHz
+At s= 0.187
+simulation took 20.2568 sec
+32
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125141407 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125141407 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868335933 GHz
+At s= 0.203
+simulation took 0.3649 sec
+33
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077134 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660625 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002390207 GHz
+At s= 0.237
+simulation took 0.1457 sec
+34
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660568 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.02789260023912 GHz
+At s= 0.237
+simulation took 0.0944 sec
+35
+5
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.206976910071337 GHz
+At s= 0.4
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.038723751770884 GHz
+At s= 0.36
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.037538833956506 GHz
+At s= 0.357
+simulation took 0.0593 sec
+36
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690865643 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.674541286401066 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715246 GHz
+At s= 0.214
+simulation took 0.1245 sec
+37
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427075784 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596608594 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002390563 GHz
+At s= 0.237
+simulation took 0.1969 sec
+38
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707763 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660888 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389284 GHz
+At s= 0.237
+simulation took 0.2503 sec
+39
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690868485 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864012792 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715033 GHz
+At s= 0.214
+simulation took 0.3663 sec
+40
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077205 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596608026 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389 GHz
+At s= 0.237
+simulation took 0.1965 sec
+41
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690866922 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864012081 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507153598 GHz
+At s= 0.214
+simulation took 0.1989 sec
+42
+9
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.1155277182753451 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.0708774597811441 GHz
+At s= 0.19
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.0667000184515842 GHz
+At s= 0.186
+simulation took 0.9361 sec
+43
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690868485 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864012792 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715033 GHz
+At s= 0.214
+simulation took 0.3660 sec
+44
+11
+Minimup gap computed with 4th eigenvalue
+Minimup gap: 1.006132528921654 GHz
+At s= 0.2
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.5659976182715525 GHz
+At s= 0.19
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.5479634263104742 GHz
+At s= 0.186
+simulation took 20.3435 sec
+45
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0568967644368712 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.064064445661245 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0515234193908327 GHz
+At s= 0.195
+simulation took 0.8710 sec
+46
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.410801512513956 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.410801512513956 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868338207 GHz
+At s= 0.203
+simulation took 0.3937 sec
+47
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.493893099671169 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4660312961753164 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4660312961753164 GHz
+At s= 0.21
+simulation took 0.3343 sec
+48
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125141549 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125141549 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868338065 GHz
+At s= 0.203
+simulation took 0.3419 sec
+49
+10
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.058147875679623 GHz
+At s= 0.2
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0052457987647614 GHz
+At s= 0.19
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0039350036570198 GHz
+At s= 0.188
+simulation took 3.4809 sec
+50
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4938930996706574 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4660312961756006 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4660312961756006 GHz
+At s= 0.21
+simulation took 0.3362 sec
+51
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125138849 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125138849 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868338633 GHz
+At s= 0.203
+simulation took 0.3418 sec
+52
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086742 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.674541286401194 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715104 GHz
+At s= 0.214
+simulation took 0.1922 sec
+53
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660568 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.02789260023912 GHz
+At s= 0.237
+simulation took 0.1457 sec
+54
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707692 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660618 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.02789260023912 GHz
+At s= 0.237
+simulation took 0.1161 sec
+55
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690868414 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864009808 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507152603 GHz
+At s= 0.214
+simulation took 0.1176 sec
+56
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690869124 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864008813 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715374 GHz
+At s= 0.214
+simulation took 0.1919 sec
+57
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125136717 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125136717 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868334654 GHz
+At s= 0.203
+simulation took 0.3409 sec
+58
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086543 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.674541286401066 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507152319 GHz
+At s= 0.214
+simulation took 0.1972 sec
+59
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690861806 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010802 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715516 GHz
+At s= 0.214
+simulation took 0.3603 sec
+60
+5
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.206976910071337 GHz
+At s= 0.4
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.038723751770884 GHz
+At s= 0.36
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.037538833956506 GHz
+At s= 0.357
+simulation took 0.1344 sec
+61
+5
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.206976910071337 GHz
+At s= 0.4
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.038723751770884 GHz
+At s= 0.36
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.037538833956506 GHz
+At s= 0.357
+simulation took 0.1171 sec
+62
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.115889638349472 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.0917976733764618 GHz
+At s= 0.19
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.0904704434978214 GHz
+At s= 0.192
+simulation took 0.2714 sec
+63
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0568967644358622 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0640644456606339 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0515234193906196 GHz
+At s= 0.195
+simulation took 0.9441 sec
+64
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707614 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606462 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238758 GHz
+At s= 0.237
+simulation took 0.1962 sec
+65
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660568 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.02789260023912 GHz
+At s= 0.237
+simulation took 0.1453 sec
+66
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690868414 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864009808 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507152603 GHz
+At s= 0.214
+simulation took 0.1556 sec
+67
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086749 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864004123 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507145498 GHz
+At s= 0.214
+simulation took 0.3623 sec
+68
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606604 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389923 GHz
+At s= 0.237
+simulation took 0.1465 sec
+69
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690866922 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864012081 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507153598 GHz
+At s= 0.214
+simulation took 0.1698 sec
+70
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427075215 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596605468 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002388857 GHz
+At s= 0.237
+simulation took 0.1952 sec
+71
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.056896764437667 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0640644456612733 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.05152341939079 GHz
+At s= 0.195
+simulation took 0.9206 sec
+72
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707607 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596606462 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238772 GHz
+At s= 0.237
+simulation took 0.1461 sec
+73
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086742 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010945 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507154308 GHz
+At s= 0.214
+simulation took 0.1501 sec
+74
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.72510606908682 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010945 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507155445 GHz
+At s= 0.214
+simulation took 0.1956 sec
+75
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707699 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596608523 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389 GHz
+At s= 0.237
+simulation took 0.1452 sec
+76
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.493893099671297 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.46603129617489 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.46603129617489 GHz
+At s= 0.21
+simulation took 0.3086 sec
+77
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690864222 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864010376 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507149619 GHz
+At s= 0.214
+simulation took 0.3384 sec
+78
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690866353 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864011797 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.670744950715303 GHz
+At s= 0.214
+simulation took 0.3431 sec
+79
+10
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0012101671242988 GHz
+At s= 0.2
+Minimup gap computed with 4th eigenvalue
+Minimup gap: 2.1729937206318084 GHz
+At s= 0.23
+Minimup gap computed with 4th eigenvalue
+Minimup gap: 2.1691861637519025 GHz
+At s= 0.225
+simulation took 3.6357 sec
+80
+5
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.206976910071337 GHz
+At s= 0.4
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.038723751770884 GHz
+At s= 0.36
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.037538833956506 GHz
+At s= 0.357
+simulation took 0.1370 sec
+81
+6
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707628 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660831 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389 GHz
+At s= 0.237
+simulation took 0.0892 sec
+82
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077205 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596608026 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238758 GHz
+At s= 0.237
+simulation took 0.1251 sec
+83
+9
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.1228717676464157 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.113556225711946 GHz
+At s= 0.19
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.107818883261615 GHz
+At s= 0.194
+simulation took 0.8828 sec
+84
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125139417 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125139417 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868329823 GHz
+At s= 0.203
+simulation took 0.3937 sec
+85
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125138849 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125138849 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868338633 GHz
+At s= 0.203
+simulation took 0.3422 sec
+86
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125137001 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125137001 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868337923 GHz
+At s= 0.203
+simulation took 0.3411 sec
+87
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690869195 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864013929 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507154308 GHz
+At s= 0.214
+simulation took 0.3384 sec
+88
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690867916 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864011229 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507152177 GHz
+At s= 0.214
+simulation took 0.1916 sec
+89
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125136006 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125136006 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.407849086833636 GHz
+At s= 0.203
+simulation took 0.3412 sec
+90
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.7251060690866566 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6745412864011087 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507151182 GHz
+At s= 0.214
+simulation took 0.1920 sec
+91
+9
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.1838221462766683 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.1838221462766683 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.1824610587818967 GHz
+At s= 0.198
+simulation took 0.9275 sec
+92
+5
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.206976910071337 GHz
+At s= 0.4
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.038723751770884 GHz
+At s= 0.36
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 5.037538833956506 GHz
+At s= 0.357
+simulation took 0.1691 sec
+93
+10
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.004163360147004 GHz
+At s= 0.2
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8598880078760942 GHz
+At s= 0.19
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 1.8561644603942966 GHz
+At s= 0.188
+simulation took 3.7315 sec
+94
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.725106069086543 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.674541286401066 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.6707449507152319 GHz
+At s= 0.214
+simulation took 0.2011 sec
+95
+9
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 1.0568967644358764 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.064064445660165 GHz
+At s= 0.2
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 1.0515234193903638 GHz
+At s= 0.195
+simulation took 0.9444 sec
+96
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.436743242707763 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.029658559660888 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0278926002389284 GHz
+At s= 0.237
+simulation took 0.1978 sec
+97
+7
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.4367432427077205 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.0296585596608026 GHz
+At s= 0.24
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 2.027892600238758 GHz
+At s= 0.237
+simulation took 0.1973 sec
+98
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125142117 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4108015125142117 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4078490868335223 GHz
+At s= 0.203
+simulation took 0.3687 sec
+99
+8
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.493893099670288 GHz
+At s= 0.2
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4660312961752737 GHz
+At s= 0.21
+Minimup gap computed with 1th eigenvalue
+Minimup gap: 1.4660312961752737 GHz
+At s= 0.21
+simulation took 0.3936 sec

@@ -1,0 +1,55 @@
+Cycle of length 3
+3
+Minimup gap computed with 3th eigenvalue
+Minimup gap: 6.335755298920903 GHz
+simulation took 0.2958 sec
+Cycle of length 4
+4
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 7.243793128222046 GHz
+simulation took 0.2040 sec
+Cycle of length 5
+5
+Minimup gap computed with 5th eigenvalue
+Minimup gap: 6.2199759202453695 GHz
+simulation took 0.2363 sec
+Cycle of length 6
+6
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 5.003141033747365 GHz
+simulation took 0.3391 sec
+Cycle of length 7
+7
+Minimup gap computed with 7th eigenvalue
+Minimup gap: 6.182168063397299 GHz
+simulation took 1.2684 sec
+Cycle of length 8
+8
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 3.7906321007337773 GHz
+simulation took 4.5616 sec
+Cycle of length 9
+9
+Minimup gap computed with 9th eigenvalue
+Minimup gap: 6.164877424088683 GHz
+simulation took 16.0464 sec
+Cycle of length 10
+10
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 3.0459008264795635 GHz
+simulation took 57.4638 sec
+Cycle of length 11
+11
+Minimup gap computed with 11th eigenvalue
+Minimup gap: 5.490579614476179 GHz
+simulation took 325.2283 sec
+Cycle of length 12
+12
+Minimup gap computed with 2th eigenvalue
+Minimup gap: 2.54419121373995 GHz
+simulation took 3084.6456 sec
+Cycle of length 13
+13
+Minimup gap computed with 13th eigenvalue
+Minimup gap: 5.016860146124387 GHz
+simulation took 7211.6908 sec

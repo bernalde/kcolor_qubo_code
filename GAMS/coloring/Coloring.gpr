@@ -1,0 +1,69 @@
+[PROJECT]
+
+[RP:EMBEDDING]
+1=reslim=300, mip=cplex
+2=reslim=300, mip=gurobi
+3=reslim=300, mip=cbc
+4=reslim=300, rmip=cbc
+5=reslim=300, rmip=gurobi
+6=reslim=300, rmip=cplex
+7=reslim=300, rmip=coinglpk
+8=reslim=300, rmip=mosek
+9=reslim=300, rmip=glpk
+10=reslim=300, rmip=clp
+11=reslim=300 rmip=cbc
+12=
+
+[RP:CRS-RPCASE3_CORRECTED]
+1=
+
+[RP:QQUBO]
+1=
+
+[RP:LINEAR]
+1=limrow = 50
+2=
+3=optcr=0 limrow=50
+4=optcr=0
+
+[RP:NONLINEAR]
+1=optcr = 0 limrow = 50
+2=optcr = 0
+3=
+
+[RP:QUBO]
+1=
+
+[RP:UNTITLED_1]
+1=
+
+[RP:QUBO_LASSERRE]
+1=
+
+[MRUFILES]
+1=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\Untitled_1.gms
+2=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\qqubo.log
+3=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\qubo.log
+4=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Nonlinear.log
+5=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Linear.log
+6=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Untitled_1.gms
+7=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\cyle.inc
+
+[OPENWINDOW_1]
+FILE0=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\cycle.inc
+FILE1=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\Linear.gms
+FILE2=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\Linear.lst
+FILE3=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\Nonlinear.gms
+FILE4=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\Nonlinear.lst
+FILE5=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qqubo.gms
+FILE6=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qqubo.lst
+FILE7=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo.gms
+FILE8=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo.lst
+FILE9=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo_lasserre.gms
+FILE10=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo_lasserre.lst
+FILE11=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo_lasserre.lst
+MAXIM=0
+TOP=52
+LEFT=54
+HEIGHT=756
+WIDTH=1179

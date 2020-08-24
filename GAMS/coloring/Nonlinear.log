@@ -1,0 +1,131 @@
+
+--- Job Nonlinear.gms Start 04/17/20 16:06:06 30.3.0 rc5da09e WEX-WEI x86 64bit/MS Windows
+--- GAMS Parameters defined
+    Input C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\Nonlinear.gms
+    PageWidth 80
+    PageSize 0
+    PageContr 3
+    Action CE
+    ScrDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\225a\
+    SysDir C:\GAMS\win64\30.3\
+    WorkDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\
+    LogOption 3
+    DFormat 0
+    TFormat 0
+    ErrorLog 99
+    LimRow 50
+    IDE 1
+    OptCR 0
+GAMS 30.3.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+          Dept. of Chemical Engineering                              DCE375
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- Nonlinear.gms(3) 2 Mb
+--- . devil50.inc(2658) 3 Mb
+--- Nonlinear.gms(29) 3 Mb
+--- Starting execution: elapsed 0:00:00.008
+--- Nonlinear.gms(2683) 4 Mb
+--- Generating MIQCP model coloring
+--- Nonlinear.gms(2685) 9 Mb
+---   8,866 rows  457 columns  18,187 non-zeroes
+---   35,461 nl-code  17,730 nl-non-zeroes
+---   456 discrete-columns
+--- Nonlinear.gms(2685) 7 Mb
+--- Executing GUROBI: elapsed 0:00:00.159
+
+Gurobi           30.3.0 rc5da09e Released Mar 06, 2020 WEI x86 64bit/MS Window
+
+Academic license - for non-commercial use only
+Gurobi link license.
+Gurobi library version 9.0.1
+Starting Gurobi...
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 0 rows, 456 columns and 0 nonzeros
+Model fingerprint: 0x5d2b7c44
+Model has 8865 quadratic constraints
+Variable types: 0 continuous, 456 integer (456 binary)
+Coefficient statistics:
+  Matrix range     [0e+00, 0e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Found heuristic solution: objective -0.0000000
+Presolve added 8105 rows and 0 columns
+Presolve time: 0.14s
+Presolved: 8105 rows, 456 columns, 16362 nonzeros
+Variable types: 0 continuous, 456 integer (456 binary)
+
+Root relaxation: objective 1.520000e+02, 943 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                     152.0000000  456.00000   200%     -    0s
+     0     0          -    0       152.00000  152.00000  0.00%     -    0s
+
+Explored 0 nodes (1139 simplex iterations) in 0.21 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 152 -0 
+
+Optimal solution found (tolerance 0.00e+00)
+Best objective 1.520000000000e+02, best bound 1.520000000000e+02, gap 0.0000%
+
+User-callback calls 78, time in user-callback 0.00 sec
+MIQCP status(2): Model was solved to optimality (subject to tolerances).
+
+Solving fixed MIQCP.
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 0 rows, 456 columns and 0 nonzeros
+Model fingerprint: 0x70ba17a5
+Model has 8865 quadratic constraints
+Coefficient statistics:
+  Matrix range     [0e+00, 0e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Presolve removed 0 rows and 456 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.00 seconds
+Optimal objective 1.52000000e+02
+Solving KKT system to obtain QCP duals...
+
+Optimize a model with 8865 rows, 456 columns and 5910 nonzeros
+Model fingerprint: 0xdcba25ed
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 3e+00]
+  QObjective range [2e+00, 2e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Presolve removed 8865 rows and 456 columns
+Presolve time: 0.08s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.08 seconds
+Optimal objective 1.52000000e+02
+
+
+User-callback calls 101, time in user-callback 0.00 sec
+Fixed MIQCP status(2): Model was solved to optimality (subject to tolerances).
+
+MIQCP Solution:        152.000000    (1139 iterations, 0 nodes)
+Final Solve:           152.000000    (0 iterations)
+
+Best possible:         152.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- Nonlinear.gms(2685) 2 Mb
+--- Reading solution for model coloring
+--- Nonlinear.gms(2685) 3 Mb
+--- Executing after solve: elapsed 0:00:00.680
+--- Nonlinear.gms(2687) 4 Mb
+*** Status: Normal completion
+--- Job Nonlinear.gms Stop 04/17/20 16:06:06 elapsed 0:00:00.697

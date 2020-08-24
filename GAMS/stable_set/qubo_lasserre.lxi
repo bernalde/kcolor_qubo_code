@@ -1,0 +1,16 @@
+B 3 C o m p i l a t i o n
+B 2694 Include File Summary
+B 2709 Equation Listing    SOLVE stableset Using MIQCP From line 2682
+D 2712 objective
+B 4113 Column Listing      SOLVE stableset Using MIQCP From line 2682
+E 4116 x
+E 4132 s
+E 4148 alpha
+B 4156 Model Statistics    SOLVE stableset Using MIQCP From line 2682
+B 4174 Solution Report     SOLVE stableset Using MIQCP From line 2682
+F 4204 objective
+G 4206 x
+G 4363 s
+G 7021 alpha
+B 7030 E x e c u t i o n
+I 7032 alpha

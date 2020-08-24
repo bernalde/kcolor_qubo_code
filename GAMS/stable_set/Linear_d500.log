@@ -1,0 +1,125 @@
+
+--- Job Linear.gms Start 01/29/20 15:51:42 30.1.0 re01a340 WEX-WEI x86 64bit/MS Windows
+--- GAMS Parameters defined
+    Input C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Linear.gms
+    PageWidth 80
+    PageSize 0
+    PageContr 3
+    Action CE
+    ScrDir C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\225a\
+    SysDir C:\GAMS\win64\30.1\
+    WorkDir C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\
+    LogOption 3
+    DFormat 0
+    TFormat 0
+    ErrorLog 99
+    LimRow 50
+    IDE 1
+GAMS 30.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+          Dept. of Chemical Engineering                              DCE375
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- Linear.gms(4) 2 Mb
+--- . devil500.inc(251508) 9 Mb
+--- Linear.gms(24) 9 Mb
+--- Starting execution: elapsed 0:00:00.569
+--- Linear.gms(251528) 10 Mb
+--- Generating MIP model stableset
+--- Linear.gms(251530) 73 Mb
+---   251,502 rows  1,503 columns  504,505 non-zeroes
+---   1,502 discrete-columns
+--- Executing GUROBI: elapsed 0:00:00.995
+
+Gurobi           30.1.0 re01a340 Released Jan 10, 2020 WEI x86 64bit/MS Window
+
+Academic license - for non-commercial use only
+Gurobi link license.
+Gurobi library version 9.0.0
+Space for names approximately 6.69 Mb
+Use option 'names no' to turn use of names off
+Starting Gurobi...
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (win64)
+Optimize a model with 251501 rows, 1502 columns and 503002 nonzeros
+Model fingerprint: 0x6597d2f2
+Variable types: 0 continuous, 1502 integer (1502 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 501.0000000
+Presolve removed 0 rows and 0 columns (presolve time = 5s) ...
+Presolve time: 6.55s
+Presolved: 251501 rows, 1502 columns, 503002 nonzeros
+Variable types: 0 continuous, 1502 integer (1502 binary)
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    1.0010000e+03   0.000000e+00   5.000000e+02      7s
+    8200    7.5100000e+02   0.000000e+00   0.000000e+00      7s
+    8200    7.5100000e+02   0.000000e+00   0.000000e+00      7s
+
+Root relaxation: objective 7.510000e+02, 8200 iterations, 0.54 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  751.00000    0 1502  501.00000  751.00000  49.9%     -   10s
+     0     0  748.50000    0 1491  501.00000  748.50000  49.4%     -   26s
+     0     0  744.50000    0 1477  501.00000  744.50000  48.6%     -   60s
+     0     0  742.50000    0 1467  501.00000  742.50000  48.2%     -   79s
+     0     0  742.50000    0 1451  501.00000  742.50000  48.2%     -   97s
+     0     0  742.50000    0 1502  501.00000  742.50000  48.2%     -  137s
+     0     0  742.50000    0 1502  501.00000  742.50000  48.2%     -  139s
+     0     2  742.50000    0 1502  501.00000  742.50000  48.2%     -  181s
+     3     1     cutoff    2       501.00000  742.50000  48.2%   799  185s
+
+Explored 5 nodes (23568 simplex iterations) in 186.39 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 501
+
+Optimal solution found (tolerance 1.00e-01)
+Best objective 5.010000000000e+02, best bound 5.010000000000e+02, gap 0.0000%
+
+User-callback calls 20068, time in user-callback 0.00 sec
+MIP status(2): Model was solved to optimality (subject to tolerances).
+
+Solving fixed MIP.
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (win64)
+Optimize a model with 251501 rows, 1502 columns and 503002 nonzeros
+Model fingerprint: 0xeea5bb1d
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 1502 rows and 253003 columns
+Presolve time: 0.11s
+Presolve: All rows and columns removed
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    5.0100000e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 0 iterations and 0.26 seconds
+Optimal objective  5.010000000e+02
+
+User-callback calls 20093, time in user-callback 0.00 sec
+Fixed MIP status(2): Model was solved to optimality (subject to tolerances).
+
+MIP   Solution:        501.000000    (23568 iterations, 5 nodes)
+Final Solve:           501.000000    (0 iterations)
+
+Best possible:         501.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- Linear.gms(251530) 17 Mb
+--- Reading solution for model stableset
+--- Linear.gms(251530) 33 Mb
+--- Executing after solve: elapsed 0:03:08.845
+--- Linear.gms(251532) 33 Mb
+*** Status: Normal completion
+--- Job Linear.gms Stop 01/29/20 15:54:51 elapsed 0:03:08.854

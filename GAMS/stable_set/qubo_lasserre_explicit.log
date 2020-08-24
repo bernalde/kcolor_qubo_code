@@ -1,0 +1,49 @@
+
+--- Job qubo_lasserre_explicit.gms Start 06/03/20 22:05:12 31.1.1 r4b06116 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\win64\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo_lasserre_explicit.gms
+    PageWidth 80
+    PageSize 0
+    PageContr 3
+    Action CE
+    ScrDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\225a\
+    SysDir C:\GAMS\win64\31.1\
+    WorkDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\
+    LogOption 3
+    DFormat 0
+    TFormat 0
+    ErrorLog 99
+    IDE 1
+GAMS 31.1.1   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+          Dept. of Chemical Engineering                              DCE375
+          C:\Users\debernal\Documents\GAMS\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- qubo_lasserre_explicit.gms(1) 2 Mb
+--- . cycle.inc(10) 3 Mb
+--- qubo_lasserre_explicit.gms(26) 3 Mb
+--- Starting execution: elapsed 0:00:00.067
+--- qubo_lasserre_explicit.gms(32) 4 Mb
+--- Generating MIQCP model stableset
+--- qubo_lasserre_explicit.gms(34) 6 Mb
+---   1 rows  7 columns  7 non-zeroes
+---   25 nl-code  6 nl-non-zeroes
+---   6 discrete-columns
+--- qubo_lasserre_explicit.gms(34) 4 Mb
+--- Executing CONVERT: elapsed 0:00:00.243
+
+Convert 2.0      31.1.1 r4b06116 Released May 16, 2020 WEI x86 64bit/MS Window
+
+--- Writing Dict      : dict.txt 
+--- Writing Gams      : gams.gms 
+
+--- Restarting execution
+--- qubo_lasserre_explicit.gms(34) 2 Mb
+--- Reading solution for model stableset
+--- Executing after solve: elapsed 0:00:01.017
+--- qubo_lasserre_explicit.gms(36) 3 Mb
+*** Status: Normal completion
+--- Job qubo_lasserre_explicit.gms Stop 06/03/20 22:05:13 elapsed 0:00:01.052

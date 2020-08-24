@@ -1,0 +1,18 @@
+B 3 C o m p i l a t i o n
+B 42 Include File Summary
+B 56 E x e c u t i o n
+I 56 E
+B 71 Equation Listing    SOLVE stableset Using MIP From line 32
+D 74 objective
+D 79 constraint
+B 93 Column Listing      SOLVE stableset Using MIP From line 32
+E 96 x
+E 118 alpha
+B 126 Model Statistics    SOLVE stableset Using MIP From line 32
+B 142 Solution Report     SOLVE stableset Using MIP From line 32
+F 170 objective
+F 172 constraint
+G 182 x
+G 194 alpha
+B 202 E x e c u t i o n
+I 204 alpha

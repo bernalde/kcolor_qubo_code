@@ -1,0 +1,14 @@
+B 3 C o m p i l a t i o n
+B 45 Include File Summary
+B 60 E x e c u t i o n
+I 60 E
+B 73 Equation Listing    SOLVE stableset Using MIQCP From line 34
+D 76 objective
+B 84 Column Listing      SOLVE stableset Using MIQCP From line 34
+E 87 x
+E 102 s
+E 117 alpha
+B 125 Model Statistics    SOLVE stableset Using MIQCP From line 34
+B 143 Solution Report     SOLVE stableset Using MIQCP From line 34
+B 169 E x e c u t i o n
+I 171 alpha

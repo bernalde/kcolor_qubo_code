@@ -1,0 +1,18 @@
+B 3 C o m p i l a t i o n
+B 2699 Include File Summary
+B 2713 Equation Listing    SOLVE coloring Using MIQCP From line 2688
+D 2716 objective
+B 6961 Column Listing      SOLVE coloring Using MIQCP From line 2688
+E 6964 x
+E 6980 s
+E 6996 t
+E 7012 alpha
+B 7020 Model Statistics    SOLVE coloring Using MIQCP From line 2688
+B 7038 Solution Report     SOLVE coloring Using MIQCP From line 2688
+F 7068 objective
+G 7070 x
+G 7531 s
+G 15489 t
+G 15648 alpha
+B 15657 E x e c u t i o n
+I 15659 alpha

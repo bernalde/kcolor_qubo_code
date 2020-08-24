@@ -1,0 +1,5 @@
+
+loop(i,
+	E(i,i ++ 1) = yes;
+);
+display E;

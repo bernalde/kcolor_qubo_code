@@ -1,0 +1,18 @@
+B 3 C o m p i l a t i o n
+B 2695 Include File Summary
+B 2709 Equation Listing    SOLVE coloring Using MIQCP From line 2685
+D 2712 objective
+D 2853 constraint1
+D 2958 constraint2
+B 3064 Column Listing      SOLVE coloring Using MIQCP From line 2685
+E 3067 x
+E 3248 alpha
+B 3256 Model Statistics    SOLVE coloring Using MIQCP From line 2685
+B 3274 Solution Report     SOLVE coloring Using MIQCP From line 2685
+F 3303 objective
+F 3305 constraint1
+F 11263 constraint2
+G 12180 x
+G 12643 alpha
+B 12652 E x e c u t i o n
+I 12654 alpha

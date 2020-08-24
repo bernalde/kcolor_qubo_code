@@ -1,0 +1,18 @@
+B 3 C o m p i l a t i o n
+B 2696 Include File Summary
+B 2710 Equation Listing    SOLVE coloring Using MIP From line 2686
+D 2713 objective
+D 2854 constraint1
+D 2959 constraint2
+B 3065 Column Listing      SOLVE coloring Using MIP From line 2686
+E 3068 x
+E 3240 alpha
+B 3248 Model Statistics    SOLVE coloring Using MIP From line 2686
+B 3264 Solution Report     SOLVE coloring Using MIP From line 2686
+F 3293 objective
+F 3295 constraint1
+F 11253 constraint2
+G 11410 x
+G 11873 alpha
+B 11881 E x e c u t i o n
+I 11883 alpha

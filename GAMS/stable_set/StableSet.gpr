@@ -1,0 +1,86 @@
+[PROJECT]
+
+[RP:EMBEDDING]
+1=reslim=300, mip=cplex
+2=reslim=300, mip=gurobi
+3=reslim=300, mip=cbc
+4=reslim=300, rmip=cbc
+5=reslim=300, rmip=gurobi
+6=reslim=300, rmip=cplex
+7=reslim=300, rmip=coinglpk
+8=reslim=300, rmip=mosek
+9=reslim=300, rmip=glpk
+10=reslim=300, rmip=clp
+11=reslim=300 rmip=cbc
+12=
+
+[RP:CRS-RPCASE3_CORRECTED]
+1=
+
+[RP:LINEAR]
+1=limrow = 50
+2=
+3=optcr=0 limrow=50
+4=optcr=0
+
+[RP:MAX_CUT]
+1=
+
+[RP:LOG_REGRESSION_DISCRETE]
+1=optcr=0 optfile=1
+2=optcr=0 optfile=1 nlp=mosek
+3=optcr=0
+4=
+
+[RP:NONLINEAR]
+1=optcr = 0 limrow = 50
+2=optcr = 0
+3=
+
+[RP:QQUBO]
+1=
+
+[RP:UNTITLED_1]
+1=
+
+[RP:GAMS]
+1=
+
+[RP:QUBO_LASSERRE_EXPLICIT]
+1=
+
+[RP:QUBO_LASSERRE]
+1=
+
+[RP:QUBO]
+1=
+
+[MRUFILES]
+1=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\Untitled_1.gms
+2=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\cyle.inc
+3=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\qqubo.log
+4=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\qubo.log
+5=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Nonlinear.log
+6=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Linear.log
+7=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\Untitled_1.gms
+8=C:\Users\debernal\Dropbox\CMU\Research\StableSet\GAMS\cyle.inc
+
+[OPENWINDOW_1]
+FILE0=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\cycle.inc
+FILE1=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\devil5.inc
+FILE2=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\gams.gms
+FILE3=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\Linear.gms
+FILE4=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\Nonlinear.gms
+FILE5=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qqubo.gms
+FILE6=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo.gms
+FILE7=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo.lst
+FILE8=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo_lasserre.gms
+FILE9=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo_lasserre.lst
+FILE10=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo_lasserre_explicit.gms
+FILE11=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo_lasserre_explicit.lst
+FILE12=C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\stable_set\qubo.lst
+MAXIM=0
+TOP=52
+LEFT=54
+HEIGHT=568
+WIDTH=1151

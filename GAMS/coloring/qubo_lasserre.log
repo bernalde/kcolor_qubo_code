@@ -1,0 +1,134 @@
+
+--- Job qubo_lasserre.gms Start 04/17/20 16:36:50 30.3.0 rc5da09e WEX-WEI x86 64bit/MS Windows
+--- GAMS Parameters defined
+    Input C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo_lasserre.gms
+    PageWidth 80
+    PageSize 0
+    PageContr 3
+    Action CE
+    ScrDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\225a\
+    SysDir C:\GAMS\win64\30.3\
+    WorkDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\
+    LogOption 3
+    DFormat 0
+    TFormat 0
+    ErrorLog 99
+    IDE 1
+GAMS 30.3.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+          Dept. of Chemical Engineering                              DCE375
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- qubo_lasserre.gms(3) 2 Mb
+--- . devil50.inc(2658) 3 Mb
+--- qubo_lasserre.gms(32) 3 Mb
+--- Starting execution: elapsed 0:00:00.016
+--- qubo_lasserre.gms(2686) 4 Mb
+--- Generating MIQCP model coloring
+--- qubo_lasserre.gms(2688) 7 Mb
+---   1 rows  8,562 columns  8,562 non-zeroes
+---   49,241 nl-code  8,561 nl-non-zeroes
+---   8,561 discrete-columns
+--- qubo_lasserre.gms(2688) 5 Mb
+--- Executing GUROBI: elapsed 0:00:00.245
+
+Gurobi           30.3.0 rc5da09e Released Mar 06, 2020 WEI x86 64bit/MS Window
+
+Academic license - for non-commercial use only
+Gurobi link license.
+Gurobi library version 9.0.1
+Space for names approximately 0.15 Mb
+Use option 'names no' to turn use of names off
+Starting Gurobi...
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 0 rows, 8561 columns and 0 nonzeros
+Model fingerprint: 0xe0c6738e
+Model has 33332 quadratic objective terms
+Variable types: 0 continuous, 8561 integer (8561 binary)
+Coefficient statistics:
+  Matrix range     [0e+00, 0e+00]
+  Objective range  [2e+00, 1e+02]
+  QObjective range [2e+00, 1e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Found heuristic solution: objective -8105.000000
+Presolve time: 0.08s
+Presolved: 24771 rows, 33332 columns, 74313 nonzeros
+Variable types: 0 continuous, 33332 integer (33332 binary)
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+   13881   -4.8660000e+03   4.909500e+03   0.000000e+00      5s
+   16571   -4.3565000e+03   0.000000e+00   0.000000e+00      8s
+
+Root relaxation: objective -4.356500e+03, 16571 iterations, 7.56 seconds
+Total elapsed time = 8.16s
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 4356.50000    0 8561 -8105.0000 4356.50000   154%     -    9s
+H    0     0                     152.0000000 4356.50000  2766%     -    9s
+     0     0 3113.00000    0 6579  152.00000 3113.00000  1948%     -   17s
+     0     0 1993.50000    0 4926  152.00000 1993.50000  1212%     -   23s
+     0     0  874.00000    0 3320  152.00000  874.00000   475%     -   28s
+     0     0     cutoff    0       152.00000  152.00000  0.00%     -   32s
+
+Cutting planes:
+  Gomory: 25
+  MIR: 270
+  Zero half: 116
+  RLT: 7620
+  BQP: 128
+
+Explored 1 nodes (52789 simplex iterations) in 32.44 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 152 -8105 
+
+Optimal solution found (tolerance 1.00e-01)
+Best objective 1.520000000000e+02, best bound 1.520000000000e+02, gap 0.0000%
+
+User-callback calls 577, time in user-callback 0.00 sec
+MIQP status(2): Model was solved to optimality (subject to tolerances).
+
+Solving fixed MIQP.
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 0 rows, 8561 columns and 0 nonzeros
+Model fingerprint: 0xe145c976
+Model has 33332 quadratic objective terms
+Coefficient statistics:
+  Matrix range     [0e+00, 0e+00]
+  Objective range  [2e+00, 1e+02]
+  QObjective range [2e+00, 1e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Presolve removed 0 rows and 8561 columns
+Presolve time: 0.01s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.01 seconds
+Optimal objective 1.52000000e+02
+
+User-callback calls 597, time in user-callback 0.00 sec
+Fixed MIQP status(2): Model was solved to optimality (subject to tolerances).
+
+MIQP  Solution:        152.000000    (52789 iterations, 1 nodes)
+Final Solve:           152.000000    (0 iterations)
+
+Best possible:         152.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- qubo_lasserre.gms(2688) 2 Mb
+--- Reading solution for model coloring
+***
+*** Solver did not provide marginals for model coloring
+***
+--- qubo_lasserre.gms(2688) 3 Mb
+--- Executing after solve: elapsed 0:00:33.027
+--- qubo_lasserre.gms(2690) 4 Mb
+*** Status: Normal completion
+--- Job qubo_lasserre.gms Stop 04/17/20 16:37:23 elapsed 0:00:33.045

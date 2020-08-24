@@ -1,0 +1,219 @@
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+INCLUDE    C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\cycle.inc
+   2  *Set size can be set to any value
+   3  set i /1*5/;
+   4  alias(i,j);
+   5   
+   6  set E(i,j);
+   7   
+   8  loop(i,
+   9          E(i,i ++ 1) = yes;
+  10  );
+  11  display E;
+  12  *$include devil5.inc
+  13  *$include devil50.inc
+  14  *$include devil500.inc
+  15   
+  16  binary variable x(i);
+  17   
+  18  variable alpha;
+  19   
+  20  equation objective;
+  21   
+  22  objective.. sum(i,x(i)) =E= alpha;
+  23   
+  24  equation constraint;
+  25   
+  26  constraint(i,j)$E(i,j).. x(i) + x(j) =L= 1;
+  27   
+  28  model stableset /all/;
+  29   
+  30  option mip = gurobi;
+  31   
+  32  solve stableset using mip max alpha;
+  33   
+  34  display alpha.l;
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\debernal\Dropbox\Quantum Embe
+                                          dding\GAMS\Linear.gms
+     2        1 INCLUDE        1       1  .C:\Users\debernal\Dropbox\Quantum Emb
+                                           edding\GAMS\cycle.inc
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  30.3.0 rc5da09e WEX-WEI
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     11 SET E  
+
+            1           2           3           4           5
+
+1                     YES
+2                                 YES
+3                                             YES
+4                                                         YES
+5         YES
+
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE stableset Using MIP From line 32
+
+
+---- objective  =E=  
+
+objective..  x(1) + x(2) + x(3) + x(4) + x(5) - alpha =E= 0 ; (LHS = 0)
+     
+
+---- constraint  =L=  
+
+constraint(1,2)..  x(1) + x(2) =L= 1 ; (LHS = 0)
+     
+constraint(2,3)..  x(2) + x(3) =L= 1 ; (LHS = 0)
+     
+constraint(3,4)..  x(3) + x(4) =L= 1 ; (LHS = 0)
+     
+constraint(4,5)..  x(4) + x(5) =L= 1 ; (LHS = 0)
+     
+constraint(5,1)..  x(1) + x(5) =L= 1 ; (LHS = 0)
+     
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE stableset Using MIP From line 32
+
+
+---- x  
+
+x(1)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       objective
+        1       constraint(1,2)
+        1       constraint(5,1)
+
+x(2)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       objective
+        1       constraint(1,2)
+        1       constraint(2,3)
+
+x(3)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       objective
+        1       constraint(2,3)
+        1       constraint(3,4)
+
+REMAINING 2 ENTRIES SKIPPED
+
+---- alpha  
+
+alpha
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       objective
+
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE stableset Using MIP From line 32
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS            6
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES            6
+NON ZERO ELEMENTS            16     DISCRETE VARIABLES          5
+
+
+GENERATION TIME      =        0.125 SECONDS      4 MB  30.3.0 rc5da09e WEX-WEI
+
+
+EXECUTION TIME       =        0.125 SECONDS      4 MB  30.3.0 rc5da09e WEX-WEI
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE stableset Using MIP From line 32
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   stableset           OBJECTIVE  alpha
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  GUROBI              FROM LINE  32
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE                2.0000
+
+ RESOURCE USAGE, LIMIT          0.031      1000.000
+ ITERATION COUNT, LIMIT         2    2000000000
+GAMS/Gurobi demo/community requires a Gurobi license from Gurobi Optimization.
+Gurobi library version 9.0.1
+MIP status(2): Model was solved to optimality (subject to tolerances).
+
+Fixed MIP status(2): Model was solved to optimality (subject to tolerances).
+
+Final Solve:             2.000000    (0 iterations)
+Best possible:           2.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU objective       .         .         .       -1.000      
+
+---- EQU constraint  
+
+       LOWER     LEVEL     UPPER    MARGINAL
+
+1.2     -INF      1.000     1.000      .         
+2.3     -INF      1.000     1.000      .         
+3.4     -INF      1.000     1.000      .         
+4.5     -INF       .        1.000      .         
+5.1     -INF      1.000     1.000      .         
+
+---- VAR x  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1      .        1.000     1.000     1.000      
+2      .         .        1.000     1.000      
+3      .        1.000     1.000     1.000      
+4      .         .        1.000     1.000      
+5      .         .        1.000     1.000      
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- VAR alpha          -INF      2.000     +INF       .         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 30.3.0  rc5da09e Released Mar  6, 2020 WEX-WEI x86 64bit/MS Windows 04/03/20 15:35:08 Page 8
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     34 VARIABLE alpha.L               =        2.000  
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  30.3.0 rc5da09e WEX-WEI
+
+
+USER: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+      Dept. of Chemical Engineering                              DCE375
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\Linear.gms
+Output     C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\Linear.lst

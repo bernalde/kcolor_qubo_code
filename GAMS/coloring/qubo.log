@@ -1,0 +1,119 @@
+
+--- Job qubo.gms Start 04/17/20 16:20:06 30.3.0 rc5da09e WEX-WEI x86 64bit/MS Windows
+--- GAMS Parameters defined
+    Input C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\qubo.gms
+    PageWidth 80
+    PageSize 0
+    PageContr 3
+    Action CE
+    ScrDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\225a\
+    SysDir C:\GAMS\win64\30.3\
+    WorkDir C:\Users\debernal\Dropbox\Quantum Embedding\GAMS\coloring\
+    LogOption 3
+    DFormat 0
+    TFormat 0
+    ErrorLog 99
+    IDE 1
+GAMS 30.3.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Eval License Carnegie Mellon University        G191212/0001AB-GEN
+          Dept. of Chemical Engineering                              DCE375
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- qubo.gms(3) 2 Mb
+--- . devil50.inc(2658) 3 Mb
+--- qubo.gms(28) 3 Mb
+--- Starting execution: elapsed 0:00:00.010
+--- qubo.gms(2682) 4 Mb
+--- Generating MIQCP model coloring
+--- qubo.gms(2684) 6 Mb
+---   1 rows  457 columns  457 non-zeroes
+---   27,054 nl-code  456 nl-non-zeroes
+---   456 discrete-columns
+--- qubo.gms(2684) 4 Mb
+--- Executing GUROBI: elapsed 0:00:00.172
+
+Gurobi           30.3.0 rc5da09e Released Mar 06, 2020 WEI x86 64bit/MS Window
+
+Academic license - for non-commercial use only
+GAMS/Gurobi demo/community requires a Gurobi license from Gurobi Optimization.
+Gurobi library version 9.0.1
+Starting Gurobi...
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 0 rows, 456 columns and 0 nonzeros
+Model fingerprint: 0x212bf9fa
+Model has 8409 quadratic objective terms
+Variable types: 0 continuous, 456 integer (456 binary)
+Coefficient statistics:
+  Matrix range     [0e+00, 0e+00]
+  Objective range  [1e+00, 1e+00]
+  QObjective range [2e+00, 4e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Found heuristic solution: objective -0.0000000
+Presolve time: 0.07s
+Presolved: 8409 rows, 8865 columns, 25227 nonzeros
+Variable types: 0 continuous, 8865 integer (8865 binary)
+
+Root relaxation: objective -2.030000e+02, 280 iterations, 0.04 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  203.00000    0  406   -0.00000  203.00000      -     -    0s
+H    0     0                     152.0000000  203.00000  33.6%     -    0s
+     0     0     cutoff    0       152.00000  152.00000  0.00%     -    2s
+
+Cutting planes:
+  Gomory: 1
+  Zero half: 18
+  RLT: 101
+
+Explored 1 nodes (834 simplex iterations) in 2.01 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 152 -0 
+
+Optimal solution found (tolerance 1.00e-01)
+Best objective 1.520000000000e+02, best bound 1.520000000000e+02, gap 0.0000%
+
+User-callback calls 173, time in user-callback 0.00 sec
+MIQP status(2): Model was solved to optimality (subject to tolerances).
+
+Solving fixed MIQP.
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (win64)
+Optimize a model with 0 rows, 456 columns and 0 nonzeros
+Model fingerprint: 0xa5b0f414
+Model has 8409 quadratic objective terms
+Coefficient statistics:
+  Matrix range     [0e+00, 0e+00]
+  Objective range  [1e+00, 1e+00]
+  QObjective range [2e+00, 4e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Presolve removed 0 rows and 456 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Barrier solved model in 0 iterations and 0.01 seconds
+Optimal objective 1.52000000e+02
+
+User-callback calls 193, time in user-callback 0.00 sec
+Fixed MIQP status(2): Model was solved to optimality (subject to tolerances).
+
+MIQP  Solution:        152.000000    (834 iterations, 1 nodes)
+Final Solve:           152.000000    (0 iterations)
+
+Best possible:         152.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- qubo.gms(2684) 2 Mb
+--- Reading solution for model coloring
+***
+*** Solver did not provide marginals for model coloring
+***
+--- Executing after solve: elapsed 0:00:02.510
+--- qubo.gms(2686) 3 Mb
+*** Status: Normal completion
+--- Job qubo.gms Stop 04/17/20 16:20:08 elapsed 0:00:02.533
