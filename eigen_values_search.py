@@ -286,11 +286,12 @@ if __name__ == "__main__":
     overwrite_files = False
     draw_plots = False
     generate_plots = False
-    # eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, draw_plots, generate_plots)
+    c1s = [1,2,5]
+    probs = [0.25, 0.50, 0.75]
+    formulations = ['nonlinear', 'linear']
 
-
-    for c1 in [1,2,5]:
-        for prob in [0.25, 0.50, 0.75]:
-            for formulation in ['nonlinear','linear']:
+    for c1 in c1s:
+        for prob in probs:
+            for formulation in formulations:
                 eigen_values_search(formulation, prob, nodes, K0, K,
                                     c1, overwrite_files, draw_plots, generate_plots)
