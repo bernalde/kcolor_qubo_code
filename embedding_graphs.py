@@ -19,39 +19,55 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 import itertools
-
-TEST = True
-
-# Parameters for random graphs
-N = 51
-n0 = 3
-prob = 0.75  # graph probability
-K = 5  # number of graphs
-seed = 1
-instance = "erdos_" + str(int(100*prob))
-
-# Parameters for cycles
-# N = 200
-# n0 = 100
-# instance = "cycle"
-
-# Parameters for devil graphs
-# N = 10
-# n0 = 8
-# instance = "devil"
+import ast
 
 
-def embedding():
+def embedding(instance, TEST, prob=0.25, seed=42,
+              K=1):
 
     # Store the results in csv files
     dir_path = os.path.dirname(os.path.abspath(__file__))
     results_path = os.path.join(dir_path, "results/embedding/")
+
+    if instance == 'spreadsheet':
+        # spreadsheet_name = "erdos_" + \
+        #     str(int(100*prob)) + '_graphs_with_opt.xlsx'
+        spreadsheet_name = "erdos_" + \
+            str(int(100*prob)) + '_graphs.xlsx'
+        spreadsheet_name = os.path.join(results_path, spreadsheet_name)
+        input_data = pd.read_excel(spreadsheet_name)
+        n0 = 0
+        N = input_data.shape[0]
+        K = 1
+    elif instance == 'erdos':
+        # Parameters for random graphs
+        N = 51
+        n0 = 3
+        K = 5  # number of graphs
+        seed = 1
+        instance = "erdos_" + str(int(100*prob))
+    elif instance == 'cycle':
+        # Parameters for cycles
+        N = 200
+        n0 = 100
+    elif instance == 'devil':
+        # Parameters for devil graphs
+        N = 10
+        n0 = 8
+    else:
+        print("Graph type not implemented")
+        return()
+
+    # If results directory does not exist, we create it
     if not(os.path.exists(results_path)):
         print('Results directory ' + results_path +
               ' does not exist. We will create it.')
         os.makedirs(results_path)
 
-    file_name = instance + '_graphs'
+    if instance == "spreadsheet":
+        file_name = instance + str(int(100*prob)) + '_embedding_' + str(K)
+    else:
+        file_name = instance + '_embedding'
     file_name = os.path.join(results_path, file_name)
 
     # time horizons and time limit in seconds
@@ -73,7 +89,7 @@ def embedding():
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
     X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
-    nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
+    # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
     
 
 
@@ -87,7 +103,13 @@ def embedding():
             temp['density_target'] = nx.density(X)
 
             # Graph generation
-            if instance == "cycle":
+            if instance == "spreadsheet":
+                # Generate graph from spreadsheet
+                Input = nx.Graph()
+                edges = ast.literal_eval(input_data.edges[n])
+                Input.add_edges_from(edges)
+                alpha = 0
+            elif instance == "cycle":
                 # Cycle graphs
                 Input = nx.cycle_graph(n)
                 temp['id'] = "cycle_" + str(n)
@@ -111,10 +133,10 @@ def embedding():
 
 
             # Problem reformulations
-            # Proposed and Laserre reformulation
-            reforms = ['p', 'l']
+            # Nonlinear and Linear (Laserre) reformulation
+            reforms = ['n', 'l']
             for ref in reforms:
-                if ref == 'p':
+                if ref == 'n':
                     Q, offset = proposed(Input, M=1, draw=False)
                 elif ref == 'l':
                     Q, offset = laserre(Input, draw=False)
@@ -136,71 +158,72 @@ def embedding():
                 temp['n_edges_' + ref] = G.number_of_edges()
                 temp['density_' + ref] = nx.density(G)
 
-                # # Heuristic method solutions
-                # h_times = []
-                # h_embeds = []
-                # h_lengths = []
+                # Heuristic method solutions
+                h_times = []
+                h_embeds = []
+                h_lengths = []
 
-                # fail = 0
-                # tot_count = 0
-                # min_length = X.number_of_nodes()
-                # best_time = time_limit
-                # best_embed = {}
-                # for _ in range(n_heur):
-                #     start = time.time()
-                #     h_embed=mm.find_embedding(G, X, timeout=time_limit)
-                #     end = time.time()
-                #     h_time = end - start
-                #     h_times.append(h_time)
-                #     h_embeds.append(h_embed)
-                #     count = 0
-                #     for _, value in h_embed.items():
-                #         count += len(value)
-                #     tot_count += count
-                #     if count == 0:
-                #         fail += 1
-                #     elif count < min_length:
-                #         best_embed = h_embed
-                #         min_length = count
-                #         best_time = h_time
-                #     h_lengths.append(count)
-                # succ = (n_heur - fail) / n_heur
-                # temp['heur_embeds_' + ref] = h_embeds
-                # temp['heur_times_' + ref] = h_times
-                # temp['heur_lengths_' + ref] = h_lengths
-                # temp['heur_succ_' + ref] = succ
-                # if succ == 0:
-                #     temp['heur_avgl_' + ref] = 'NaN'
-                #     temp['heur_stdevl_' + ref] = 'NaN'
-                # else:
-                #     avgl = tot_count / (succ * n_heur)
-                #     temp['heur_avgl_' + ref] = avgl
-                #     temp['heur_stdevl_' +
-                #               ref] = statistics.stdev(h_lengths)
-                # temp['heur_avgt_' + ref] = np.median(h_times)
-                # temp['heur_best_embed_' + ref] = best_embed
-                # temp['heur_best_length_' + ref] = min_length
-                # temp['heur_best_time_' + ref] = best_time
+                fail = 0
+                tot_count = 0
+                min_length = X.number_of_nodes()
+                best_time = time_limit
+                best_embed = {}
+                for n_h in range(n_heur):
+                    start = time.time()
+                    h_embed = mm.find_embedding(
+                        G, X, timeout=time_limit, random_seed=n_h)
+                    end = time.time()
+                    h_time = end - start
+                    h_times.append(h_time)
+                    h_embeds.append(h_embed)
+                    count = 0
+                    for _, value in h_embed.items():
+                        count += len(value)
+                    tot_count += count
+                    if count == 0:
+                        fail += 1
+                    elif count < min_length:
+                        best_embed = h_embed
+                        min_length = count
+                        best_time = h_time
+                    h_lengths.append(count)
+                succ = (n_heur - fail) / n_heur
+                temp['heur_embeds_' + ref] = h_embeds
+                temp['heur_times_' + ref] = h_times
+                temp['heur_lengths_' + ref] = h_lengths
+                temp['heur_succ_' + ref] = succ
+                if succ == 0:
+                    temp['heur_avgl_' + ref] = 'NaN'
+                    temp['heur_stdevl_' + ref] = 'NaN'
+                else:
+                    avgl = tot_count / (succ * n_heur)
+                    temp['heur_avgl_' + ref] = avgl
+                    temp['heur_stdevl_' +
+                              ref] = statistics.stdev(h_lengths)
+                temp['heur_avgt_' + ref] = np.median(h_times)
+                temp['heur_best_embed_' + ref] = best_embed
+                temp['heur_best_length_' + ref] = min_length
+                temp['heur_best_time_' + ref] = best_time
 
-                # start = time.time()
-                # # Fully connected graph embedding happening here
-                # if len(Q) <= 63:
-                #     full_embed = chimera.find_clique_embedding(
-                #         len(Q), 16, target_edges=qpu_edges)
-                #     end = time.time() - start
-                #     count = 0
-                #     tot_count = 0
-                #     for _, value in full_embed.items():
-                #         count += len(value)
-                #     tot_count += count
+                start = time.time()
+                # Fully connected graph embedding happening here
+                if len(Q) <= 63:
+                    full_embed = chimera.find_clique_embedding(
+                        len(Q), 16, target_edges=qpu_edges)
+                    end = time.time() - start
+                    count = 0
+                    tot_count = 0
+                    for _, value in full_embed.items():
+                        count += len(value)
+                    tot_count += count
 
-                #     temp['full_embed_' + ref] = full_embed
-                #     temp['full_length_' + ref] = tot_count
-                #     temp['full_time_' + ref] = end
-                # else:
-                #     temp['full_embed_' + ref] = 'NaN'
-                #     temp['full_length_' + ref] = 'NaN'
-                #     temp['full_time_' + ref] = 'NaN'
+                    temp['full_embed_' + ref] = full_embed
+                    temp['full_length_' + ref] = tot_count
+                    temp['full_time_' + ref] = end
+                else:
+                    temp['full_embed_' + ref] = 'NaN'
+                    temp['full_length_' + ref] = 'NaN'
+                    temp['full_time_' + ref] = 'NaN'
 
 
             results = results.append(temp, ignore_index=True)
@@ -213,4 +236,13 @@ def embedding():
 
 
 if __name__ == "__main__":
-    embedding()
+
+    # graph_type = 'erdos'
+    # graph_type = 'cycle'
+    # graph_type = 'devil'
+    graph_type = 'spreadsheet'
+    TEST = True
+    prob = 0.50  # graph probability
+    K = 3
+    
+    embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
