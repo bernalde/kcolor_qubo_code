@@ -21,7 +21,7 @@ import pandas as pd
 import itertools
 import ast
 
-DRY_RUN = True
+DRY_RUN = False
 
 
 def embedding(instance, TEST, prob=0.25, seed=42,
@@ -250,6 +250,6 @@ if __name__ == "__main__":
     graph_type = 'spreadsheet'
     TEST = True
     prob = 0.75  # graph probability
-    K = 5
+    K = 3
     
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
