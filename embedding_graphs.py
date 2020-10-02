@@ -42,7 +42,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
         N = input_data.shape[0]
-        file_name = instance + str(int(100*prob)) + '_embedding_' + str(K)
+        file_name = instance + str(int(100*prob)) + '_embedding_pegasus_' + str(K)
         K = 1
     elif instance == 'erdos':
         # Parameters for random graphs
@@ -89,10 +89,11 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     results = pd.DataFrame(columns=columns)
 
     # Graph corresponding to D-Wave 2000Q
-    qpu = DWaveSampler()
+    qpu = DWaveSampler('Advantage_system1.1')
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
-    X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
+    # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
+    X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
     
 
@@ -250,6 +251,6 @@ if __name__ == "__main__":
     graph_type = 'spreadsheet'
     TEST = True
     prob = 0.75  # graph probability
-    K = 3
+    K = 5
     
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
