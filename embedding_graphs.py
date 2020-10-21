@@ -6,7 +6,7 @@ from stable_set_formulations import laserre, proposed
 from devil_graphs import devil_graphs
 
 import dimod
-from dwave.embedding import chimera
+from dwave.embedding import chimera, pegasus
 from dwave.system import DWaveSampler
 import dwave_networkx as dnx
 
@@ -21,7 +21,7 @@ import pandas as pd
 import itertools
 import ast
 
-DRY_RUN = False
+DRY_RUN = True
 
 
 def embedding(instance, TEST, prob=0.25, seed=42,
@@ -89,7 +89,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     results = pd.DataFrame(columns=columns)
 
     # Graph corresponding to D-Wave 2000Q
-    qpu = DWaveSampler('Advantage_system1.1')
+    qpu = DWaveSampler(solver='Advantage_system1.1')
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
     # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
@@ -215,9 +215,12 @@ def embedding(instance, TEST, prob=0.25, seed=42,
 
                     start = time.time()
                     # Fully connected graph embedding happening here
-                    if len(Q) <= 63:
-                        full_embed = chimera.find_clique_embedding(
-                            len(Q), 16, target_edges=qpu_edges)
+                    # if len(Q) <= 63:
+                    if len(Q) <= 128:
+                        # full_embed = chimera.find_clique_embedding(
+                        #     len(Q), 16, target_edges=qpu_edges)
+                        full_embed = pegasus.find_clique_embedding(
+                            len(Q), target_graph=X)
                         end = time.time() - start
                         count = 0
                         tot_count = 0
