@@ -21,7 +21,7 @@ import pandas as pd
 import itertools
 import ast
 
-DRY_RUN = True
+DRY_RUN = False
 
 
 def embedding(instance, TEST, prob=0.25, seed=42,
@@ -220,7 +220,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                         # full_embed = chimera.find_clique_embedding(
                         #     len(Q), 16, target_edges=qpu_edges)
                         full_embed = pegasus.find_clique_embedding(
-                            len(Q), target_graph=X)
+                            len(Q), m=16)
                         end = time.time() - start
                         count = 0
                         tot_count = 0
@@ -253,7 +253,7 @@ if __name__ == "__main__":
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
     TEST = True
-    prob = 0.75  # graph probability
-    K = 5
+    prob = 0.25  # graph probability
+    K = 0
     
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
