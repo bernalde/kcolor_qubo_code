@@ -213,28 +213,28 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                     temp['heur_best_length_' + ref] = min_length
                     temp['heur_best_time_' + ref] = best_time
 
-                    start = time.time()
+                    # start = time.time()
                     # Fully connected graph embedding happening here
                     # if len(Q) <= 63:
-                    if len(Q) <= 128:
+                    # if len(Q) <= 128:
                         # full_embed = chimera.find_clique_embedding(
                         #     len(Q), 16, target_edges=qpu_edges)
-                        full_embed = pegasus.find_clique_embedding(
-                            len(Q), m=16)
-                        end = time.time() - start
-                        count = 0
-                        tot_count = 0
-                        for _, value in full_embed.items():
-                            count += len(value)
-                        tot_count += count
+                        # full_embed = pegasus.find_clique_embedding(
+                        #     len(Q), m=16)
+                        # end = time.time() - start
+                        # count = 0
+                        # tot_count = 0
+                        # for _, value in full_embed.items():
+                        #     count += len(value)
+                        # tot_count += count
 
-                        temp['full_embed_' + ref] = full_embed
-                        temp['full_length_' + ref] = tot_count
-                        temp['full_time_' + ref] = end
-                    else:
-                        temp['full_embed_' + ref] = 'NaN'
-                        temp['full_length_' + ref] = 'NaN'
-                        temp['full_time_' + ref] = 'NaN'
+                        # temp['full_embed_' + ref] = full_embed
+                        # temp['full_length_' + ref] = tot_count
+                        # temp['full_time_' + ref] = end
+                    # else:
+                        # temp['full_embed_' + ref] = 'NaN'
+                        # temp['full_length_' + ref] = 'NaN'
+                        # temp['full_time_' + ref] = 'NaN'
 
 
             results = results.append(temp, ignore_index=True)
@@ -253,7 +253,7 @@ if __name__ == "__main__":
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
     TEST = True
-    prob = 0.25  # graph probability
-    K = 0
+    prob = 0.75  # graph probability
+    K = 5
     
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
