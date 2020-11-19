@@ -253,7 +253,7 @@ if __name__ == "__main__":
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
     TEST = True
-    prob = 0.75  # graph probability
-    K = 5
+    prob = 0.25  # graph probability
+    K = 0
     
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
