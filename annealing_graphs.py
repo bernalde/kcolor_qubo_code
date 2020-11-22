@@ -60,7 +60,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 str(int(100*prob)) + '_embedding_pegasus_' + str(K) + '.xlsx'
         else:
             spreadsheet_name = instance + \
-                str(int(100*prob)) + '_embedding_' + str(K) + '.xlsx'
+                str(int(100*prob)) + '_embedding.xlsx'
         spreadsheet_name = os.path.join(embedding_path, spreadsheet_name)
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
@@ -110,8 +110,12 @@ def annealing(instance, TEST, prob=0.25, seed=42,
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
     # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
     # X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
-    
 
+    columns = ['formulation', 'chain_strength',
+               'embedding', 'chain_breaks', 'chain_breaks_err', 'min_fraction',
+               'embedding_fixed', 'chain_breaks_fixed', 'chain_breaks_err_fixed', 'min_fraction_fixed'
+               ]
+    solution = pd.DataFrame(columns=columns)
 
     for k in range(K):
         for n in range(n0, N):
@@ -219,11 +223,6 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                     
                     idx_i = 0
                     for ann_time in annealing_time:
-
-                        columns = ['formulation', 'chain_strength',
-                                'embedding', 'chain_breaks', 'chain_breaks_err', 'min_fraction',
-                                'embedding_fixed', 'chain_breaks_fixed', 'chain_breaks_err_fixed', 'min_fraction_fixed'
-                                ]
                         results = pd.DataFrame(columns=columns)
 
                         results_name = instance + '_chains_' + \
@@ -298,8 +297,10 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                 idx_k += 1
 
                             results = results.append(temp, ignore_index=True)
+                            solution = solution.append(
+                                temp, ignore_index=True)
 
-                            results.to_csv(file_name + ".csv")
+                            solution.to_csv(file_name + ".csv")
 
                             idx_j += 1
 
@@ -373,10 +374,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                         plt.show()
 
                    
-
-                    
-
-    sol_total = pd.DataFrame.from_dict(results)
+    sol_total = pd.DataFrame.from_dict(solution)
 
     sol_total.to_excel(os.path.join(results_path,file_name + ".xlsx"))
 
@@ -450,11 +448,11 @@ if __name__ == "__main__":
     if TEST:
         prob = 0.25  # graph probability
         K = 0
-        draw_figures = True
+        draw_figures = False
         annealing_time = [2, 20, 200]  # Microseconds
         chain_strenghts = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10]
-        samples = 100
-        overwrite_pickles = False
+        samples = 1000
+        overwrite_pickles = True
     else:
         draw_figures = False
         overwrite_pickles = False
