@@ -444,7 +444,7 @@ if __name__ == "__main__":
     graph_type = 'spreadsheet'
     # sampler = 'DW_2000Q_6'
     sampler = 'Advantage_system1.1'
-    TEST = True
+    TEST = False
     if TEST:
         prob = 0.25  # graph probability
         K = 0
@@ -452,14 +452,14 @@ if __name__ == "__main__":
         annealing_time = [2, 20, 200]  # Microseconds
         chain_strenghts = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10]
         samples = 1000
-        overwrite_pickles = True
+        overwrite_pickles = False
     else:
         draw_figures = False
         overwrite_pickles = False
         annealing_time=[20]  # Microseconds
         chain_strenghts = [1]
         samples = 1000
-        prob = 0.25  # graph probability
-        K = 1
+        prob = 0.75  # graph probability
+        K = 5
 
     annealing(instance=graph_type, TEST=TEST, prob=prob,K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,annealing_time=annealing_time,chain_strenghts=chain_strenghts,samples=samples, sampler=sampler)
