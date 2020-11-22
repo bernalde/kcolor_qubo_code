@@ -38,6 +38,10 @@ def annealing(instance, TEST, prob=0.25, seed=42,
               chain_strenghts=[0.1, 0.2, 0.5, 1, 2, 5, 10],
               samples=100, sampler='Advantage_system1.1'):
 
+    if sampler == 'Advantage_system1.1':
+        chip = 'pegasus'
+    else:
+        chip = 'chimera'
     
 
     # Store the results in csv files
@@ -55,12 +59,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
         #     str(int(100*prob)) + '_graphs.xlsx'
         # spreadsheet_name = "erdos_" + \
         #     str(int(100*prob)) + '_graphs_' + str(K) + '.xlsx'
-        if sampler == 'Advantage_system1.1':
-            spreadsheet_name = instance + \
-                str(int(100*prob)) + '_embedding_pegasus_' + str(K) + '.xlsx'
-        else:
-            spreadsheet_name = instance + \
-                str(int(100*prob)) + '_embedding.xlsx'
+        spreadsheet_name = instance + \
+            str(int(100*prob)) + '_embedding_'+ chip + '_' + str(K) + '.xlsx'
         spreadsheet_name = os.path.join(embedding_path, spreadsheet_name)
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
@@ -106,6 +106,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
     X = nx.Graph()
+    X.add_nodes_from(qpu_nodes)
     X.add_edges_from(qpu_edges)
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
     # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
@@ -129,16 +130,6 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 Input.add_edges_from(edges)
                 alpha = 0
 
-                # Import embeddings
-                best_embedding = dict()
-                best_embedding['n'] = ast.literal_eval(input_data.heur_best_embed_n[n]
-                                                )
-                best_embedding['l'] = ast.literal_eval(input_data.heur_best_embed_l[n]
-                                                )
-
-
-
-
             elif instance == "cycle":
                 # Cycle graphs
                 Input = nx.cycle_graph(n)
@@ -159,8 +150,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
             # Define samplers: simulated annealing or Dwave (with automatic embedding)
             samplers = dict()
             samplers['simann'] = neal.SimulatedAnnealingSampler()
-            samplers['dwave_embed'] = EmbeddingComposite(DWaveSampler())
-            best_embed = True
+            samplers['dwave_embed'] = EmbeddingComposite(qpu)
 
             if DRY_RUN:
                 pass
@@ -169,12 +159,33 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 # Problem reformulations
                 # Nonlinear and Linear (Laserre) reformulation
                 reforms = ['n', 'l']
+                embeddable = dict.fromkeys(reforms, True)
+
+                # Import embeddings
+                best_embed = True
+                if best_embed:
+                    best_embedding = dict.fromkeys(reforms, {})
+                    best_embedding['n'] = ast.literal_eval(
+                        input_data.heur_best_embed_n[n])
+                    if len(best_embedding['n']) == 0:
+                        embeddable['n'] = False
+                        print('No embedding available for nonlinear reformulation')
+
+                    best_embedding['l'] = ast.literal_eval(
+                        input_data.heur_best_embed_l[n])
+
+                    if len(best_embedding['l']) == 0:
+                        embeddable['l'] = False
+                        print('No embedding available for linear reformulation')
 
                 # Set up experiments in the sense of which embedding to use
-                experiments = ['', '_fixed']
+                # experiments = ['']
+                experiments = ['_fixed']
+                # experiments = ['', '_fixed']
 
+                embeddable_reforms = (reform for reform in reforms if embeddable[reform])
 
-                for reform in reforms:
+                for reform in embeddable_reforms:
 
                     min_matrix = np.zeros(
                         [len(annealing_time), len(chain_strenghts), len(experiments)])
@@ -211,8 +222,9 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                         # else:
                         #     samplers.pop('dwave', None)
 
+                        # experiments = ['', '_fixed']
                         samplers['dwave'] = FixedEmbeddingComposite(
-                            DWaveSampler(), embedding=best_embedding[reform])
+                            qpu, embedding=best_embedding[reform])
 
                     pickle_path = os.path.join(results_path, file_name, str(n), reform)
                     if not(os.path.exists(pickle_path)):
@@ -251,48 +263,54 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                     chain_strength = max(
                                         abs(min(Q.values())), abs(max(Q.values())))*c
                                     # Here is where the D-Wave run happens
-                                    if kind == '':
-                                        response = samplers['dwave_embed'].sample(
-                                            bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
-                                    elif kind == '_fixed' and best_embed:
+                                    if kind == '_fixed' and best_embed:
                                         response = samplers['dwave'].sample(
                                             bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
-                                    
+                                    elif kind == '':
+                                        try:
+                                            response = samplers['dwave_embed'].sample(
+                                                bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
+                                        except ValueError as e:
+                                            embeddable[reform] = False
+                                            response = None
+                                            print('error type: ', type(e))
+                                        
                                     pickle.dump(response, open(pickle_name, "wb"))
 
-                                temp['embedding' +
-                                    kind] = response.info['embedding_context']['embedding']
+                                if embeddable[reform]:
+                                    temp['embedding' +
+                                        kind] = response.info['embedding_context']['embedding']
 
-                                # plot_energies(response, title=pickle_name)
+                                    # plot_energies(response, title=pickle_name)
 
-                                if 'chain_break_fraction' in response.record.dtype.names:
-                                    temp['chain_breaks' +
-                                        kind] = np.mean(response.record.chain_break_fraction)
-                                    temp['chain_breaks_err' +
-                                        kind] = np.std(response.record.chain_break_fraction)
+                                    if 'chain_break_fraction' in response.record.dtype.names:
+                                        temp['chain_breaks' +
+                                            kind] = np.mean(response.record.chain_break_fraction)
+                                        temp['chain_breaks_err' +
+                                            kind] = np.std(response.record.chain_break_fraction)
 
-                                energies = response.data_vectors['energy']
-                                occurrences = response.data_vectors['num_occurrences']
+                                    energies = response.data_vectors['energy']
+                                    occurrences = response.data_vectors['num_occurrences']
 
-                                counts = {}
-                                for index, energy in enumerate(energies):
-                                    if energy in counts.keys():
-                                        counts[energy] += occurrences[index]
-                                    else:
-                                        counts[energy] = occurrences[index]
+                                    counts = {}
+                                    for index, energy in enumerate(energies):
+                                        if energy in counts.keys():
+                                            counts[energy] += occurrences[index]
+                                        else:
+                                            counts[energy] = occurrences[index]
 
-                                total_counts = sum(occurrences)
-                                temp['min_fraction' + kind] = sum(counts[key] for key in [min(energies)] if key in counts.keys())/total_counts
-                                # temp['opt_fraction' + kind] = sum(counts[key] for key in opt_energies[
-                                #     name] if key in counts.keys())/total_counts
-                                # temp['feas_fraction' + kind] = sum(
-                                #     counts[key] for key in feas_energies[name] if key in counts.keys())/total_counts
+                                    total_counts = sum(occurrences)
+                                    temp['min_fraction' + kind] = sum(counts[key] for key in [min(energies)] if key in counts.keys())/total_counts
+                                    # temp['opt_fraction' + kind] = sum(counts[key] for key in opt_energies[
+                                    #     name] if key in counts.keys())/total_counts
+                                    # temp['feas_fraction' + kind] = sum(
+                                    #     counts[key] for key in feas_energies[name] if key in counts.keys())/total_counts
 
-                                min_matrix[idx_i, idx_j, idx_k] = sum(counts[key] for key in [min(energies)] if key in counts.keys())/total_counts
-                                # opt_matrix[idx_i, idx_j, idx_k] = sum(counts[key] for key in opt_energies[
-                                #     name] if key in counts.keys())/total_counts
-                                # feas_matrix[idx_i, idx_j, idx_k] = sum(
-                                #     counts[key] for key in feas_energies[name] if key in counts.keys())/total_counts
+                                    min_matrix[idx_i, idx_j, idx_k] = sum(counts[key] for key in [min(energies)] if key in counts.keys())/total_counts
+                                    # opt_matrix[idx_i, idx_j, idx_k] = sum(counts[key] for key in opt_energies[
+                                    #     name] if key in counts.keys())/total_counts
+                                    # feas_matrix[idx_i, idx_j, idx_k] = sum(
+                                    #     counts[key] for key in feas_energies[name] if key in counts.keys())/total_counts
 
                                 idx_k += 1
 
@@ -444,7 +462,7 @@ if __name__ == "__main__":
     graph_type = 'spreadsheet'
     # sampler = 'DW_2000Q_6'
     sampler = 'Advantage_system1.1'
-    TEST = True
+    TEST = False
     if TEST:
         prob = 0.25  # graph probability
         K = 0
@@ -455,11 +473,11 @@ if __name__ == "__main__":
         overwrite_pickles = True
     else:
         draw_figures = False
-        overwrite_pickles = False
+        overwrite_pickles = True
         annealing_time=[20]  # Microseconds
         chain_strenghts = [1]
         samples = 1000
         prob = 0.25  # graph probability
-        K = 1
+        K = 0
 
     annealing(instance=graph_type, TEST=TEST, prob=prob,K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,annealing_time=annealing_time,chain_strenghts=chain_strenghts,samples=samples, sampler=sampler)
