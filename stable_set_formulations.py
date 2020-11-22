@@ -135,7 +135,8 @@ def laserre(Y, weight=None, M=None, draw=False):
     cost = dict(Y.nodes(data=weight, default=1))
     scale = max(cost.values())
     Q = {(node, node): min(-cost[node] / scale, 0.0) for node in Y}
-    for (u, v) in Y.edges():
+    for edge in Y.edges():
+        (u, v) = tuple(sorted(edge))
         Q[(u, v)] = 2 * M
         Q[(u, 's_%s_%s' % (u, v))] = 2 * M
         Q[(v, 's_%s_%s' % (u, v))] = 2 * M

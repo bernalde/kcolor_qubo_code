@@ -25,11 +25,17 @@ DRY_RUN = False
 
 
 def embedding(instance, TEST, prob=0.25, seed=42,
-              K=1):
+              K=1, sampler='Advantage_system1.1'):
 
     # Store the results in csv files
     dir_path = os.path.dirname(os.path.abspath(__file__))
     results_path = os.path.join(dir_path, "results/embedding/")
+
+    if sampler == 'Advantage_system1.1':
+        chip = 'pegasus'
+    else:
+        chip = 'chimera'
+
 
     if instance == 'spreadsheet':
         # spreadsheet_name = "erdos_" + \
@@ -42,7 +48,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
         N = input_data.shape[0]
-        file_name = instance + str(int(100*prob)) + '_embedding_pegasus_' + str(K)
+        file_name = instance + str(int(100*prob)) + '_embedding_' + chip + '_' + str(K)
         K = 1
     elif instance == 'erdos':
         # Parameters for random graphs
@@ -51,17 +57,17 @@ def embedding(instance, TEST, prob=0.25, seed=42,
         K = 5  # number of graphs
         seed = 1
         instance = "erdos_" + str(int(100*prob))
-        file_name = instance + '_embedding'
+        file_name = instance + '_embedding_' + chip
     elif instance == 'cycle':
         # Parameters for cycles
         N = 200
         n0 = 100
-        file_name = instance + '_embedding'
+        file_name = instance + '_embedding_' + chip
     elif instance == 'devil':
         # Parameters for devil graphs
         N = 10
         n0 = 8
-        file_name = instance + '_embedding'
+        file_name = instance + '_embedding_' + chip
     else:
         print("Graph type not implemented")
         return()
@@ -77,7 +83,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     # time horizons and time limit in seconds
     if TEST:
         random.seed(seed)
-        time_limit = 120
+        time_limit = 60
         # Number of times the heuristic is run
         n_heur = 100
     else:
@@ -88,13 +94,14 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     columns = ['id', 'n_nodes', 'n_edges', 'nodes', 'edges', 'alpha', 'target', 'density_target']
     results = pd.DataFrame(columns=columns)
 
-    # Graph corresponding to D-Wave 2000Q
-    qpu = DWaveSampler(solver='Advantage_system1.1')
+    # Graph corresponding to D-Wave 2000Q or Advantage_system1.1
+    qpu = DWaveSampler(solver=sampler)
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
     # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
     # X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
     X = nx.Graph()
+    X.add_nodes_from(qpu_nodes)
     X.add_edges_from(qpu_edges)
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
     
@@ -113,7 +120,9 @@ def embedding(instance, TEST, prob=0.25, seed=42,
             if instance == "spreadsheet":
                 # Generate graph from spreadsheet
                 Input = nx.Graph()
+                nodes = ast.literal_eval(input_data.nodes[n])
                 edges = ast.literal_eval(input_data.edges[n])
+                Input.add_nodes_from(nodes)
                 Input.add_edges_from(edges)
                 alpha = 0
             elif instance == "cycle":
@@ -170,7 +179,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
 
                     # Heuristic method solutions
                     h_times = []
-                    h_embeds = []
+                    # h_embeds = []
                     h_lengths = []
 
                     fail = 0
@@ -185,7 +194,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                         end = time.time()
                         h_time = end - start
                         h_times.append(h_time)
-                        h_embeds.append(h_embed)
+                        # h_embeds.append(h_embed)
                         count = 0
                         for _, value in h_embed.items():
                             count += len(value)
@@ -198,7 +207,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                             best_time = h_time
                         h_lengths.append(count)
                     succ = (n_heur - fail) / n_heur
-                    temp['heur_embeds_' + ref] = h_embeds
+                    # temp['heur_embeds_' + ref] = h_embeds
                     temp['heur_times_' + ref] = h_times
                     temp['heur_lengths_' + ref] = h_lengths
                     temp['heur_succ_' + ref] = succ
@@ -250,12 +259,14 @@ def embedding(instance, TEST, prob=0.25, seed=42,
 
 if __name__ == "__main__":
 
+    # sampler = 'DW_2000Q_6'
+    sampler = 'Advantage_system1.1'
     # graph_type = 'erdos'
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
     TEST = True
-    prob = 0.75  # graph probability
-    K = 5
+    prob = 0.25  # graph probability
+    K = 0
     
-    embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)
+    embedding(instance=graph_type, TEST=TEST, prob=prob, K=K, sampler=sampler)
