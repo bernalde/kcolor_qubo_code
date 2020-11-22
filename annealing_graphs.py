@@ -162,7 +162,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 embeddable = dict.fromkeys(reforms, True)
 
                 # Import embeddings
-                best_embed = True
+                best_embed = False
+
                 if best_embed:
                     best_embedding = dict.fromkeys(reforms, {})
                     best_embedding['n'] = ast.literal_eval(
@@ -177,11 +178,12 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                     if len(best_embedding['l']) == 0:
                         embeddable['l'] = False
                         print('No embedding available for linear reformulation')
-
-                # Set up experiments in the sense of which embedding to use
-                # experiments = ['']
-                experiments = ['_fixed']
-                # experiments = ['', '_fixed']
+                    
+                    experiments = ['', '_fixed']
+                else:
+                    experiments = ['']
+                    # experiments = ['_fixed']
+                    # experiments = ['', '_fixed']
 
                 embeddable_reforms = (reform for reform in reforms if embeddable[reform])
 
@@ -222,7 +224,6 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                         # else:
                         #     samplers.pop('dwave', None)
 
-                        # experiments = ['', '_fixed']
                         samplers['dwave'] = FixedEmbeddingComposite(
                             qpu, embedding=best_embedding[reform])
 
@@ -258,6 +259,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                 pickle_name = os.path.join(pickle_path, pickle_name)
                                 if os.path.exists(pickle_name) and not overwrite_pickles:
                                     response = pickle.load(open(pickle_name, "rb"))
+                                    if response is None:
+                                        embeddable[reform] = False
                                 else:
                                     # chain_strength = max(Q.min(), Q.max(), key=abs)*c
                                     chain_strength = max(
@@ -273,6 +276,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                         except ValueError as e:
                                             embeddable[reform] = False
                                             response = None
+                                            print(pickle_name)
+                                            print(e)
                                             print('error type: ', type(e))
                                         
                                     pickle.dump(response, open(pickle_name, "wb"))
@@ -460,8 +465,8 @@ if __name__ == "__main__":
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
-    # sampler = 'DW_2000Q_6'
-    sampler = 'Advantage_system1.1'
+    sampler = 'DW_2000Q_6'
+    # sampler = 'Advantage_system1.1'
     TEST = False
     if TEST:
         prob = 0.25  # graph probability
