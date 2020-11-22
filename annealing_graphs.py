@@ -36,14 +36,17 @@ def annealing(instance, TEST, prob=0.25, seed=42,
               K=1, overwrite_pickles=False, draw_figures=False,
               annealing_time=[2, 20, 200],  # Microseconds
               chain_strenghts=[0.1, 0.2, 0.5, 1, 2, 5, 10],
-              samples=100):
+              samples=100, sampler='Advantage_system1.1'):
 
     
 
     # Store the results in csv files
     dir_path = os.path.dirname(os.path.abspath(__file__))
     embedding_path = os.path.join(dir_path, "results/embedding/")
-    results_path = os.path.join(dir_path, "results/dwave_chimera/")
+    if sampler == 'DW_2000Q_6':
+        results_path = os.path.join(dir_path, "results/dwave_chimera/")
+    elif sampler == 'Advantage_system1.1':
+        results_path = os.path.join(dir_path, "results/dwave_pegasus/")
 
     if instance == 'spreadsheet':
         # spreadsheet_name = "erdos_" + \
@@ -52,13 +55,17 @@ def annealing(instance, TEST, prob=0.25, seed=42,
         #     str(int(100*prob)) + '_graphs.xlsx'
         # spreadsheet_name = "erdos_" + \
         #     str(int(100*prob)) + '_graphs_' + str(K) + '.xlsx'
-        spreadsheet_name = instance + \
-            str(int(100*prob)) + '_embedding_pegasus_' + str(K) + '.xlsx'
+        if sampler == 'Advantage_system1.1':
+            spreadsheet_name = instance + \
+                str(int(100*prob)) + '_embedding_pegasus_' + str(K) + '.xlsx'
+        else:
+            spreadsheet_name = instance + \
+                str(int(100*prob)) + '_embedding_' + str(K) + '.xlsx'
         spreadsheet_name = os.path.join(embedding_path, spreadsheet_name)
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
         N = input_data.shape[0]
-        file_name = instance + str(int(100*prob)) + '_annealing_pegasus_' + str(K)
+        file_name = instance + str(int(100*prob)) + '_annealing' + str(K)
         K = 1
     elif instance == 'erdos':
         # Parameters for random graphs
@@ -93,24 +100,16 @@ def annealing(instance, TEST, prob=0.25, seed=42,
     # time horizons and time limit in seconds
     if TEST:
         random.seed(seed)
-        time_limit = 120
-        # Number of times the heuristic is run
-        n_heur = 100
-    else:
-        time_limit = 3600
-        # Number of times the heuristic is run
-        n_heur = 1000
 
     # Graph corresponding to D-Wave 2000Q or Pegasus
-    qpu = DWaveSampler(solver='DW_2000Q_6')
-    # qpu = DWaveSampler(solver='Advantage_system1.1')
+    qpu = DWaveSampler(solver=sampler)
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
-    # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
-    # X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
     X = nx.Graph()
     X.add_edges_from(qpu_edges)
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
+    # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
+    # X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
     
 
 
@@ -153,11 +152,11 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
             # Input graph parameters
 
-            # Define samplers: exact, simulated annealing and Dwave (with automatic embedding)
+            # Define samplers: simulated annealing or Dwave (with automatic embedding)
             samplers = dict()
             samplers['simann'] = neal.SimulatedAnnealingSampler()
             samplers['dwave_embed'] = EmbeddingComposite(DWaveSampler())
-            best_embed = False
+            best_embed = True
 
             if DRY_RUN:
                 pass
@@ -169,12 +168,6 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
                 # Set up experiments in the sense of which embedding to use
                 experiments = ['', '_fixed']
-
-                columns = ['formulation', 'chain_strength',
-                           'embedding', 'chain_breaks', 'chain_breaks_err', 'min_fraction',
-                           'embedding_fixed', 'chain_breaks_fixed', 'chain_breaks_err_fixed', 'min_fraction_fixed'
-                           ]
-                results = pd.DataFrame(columns=columns)
 
 
                 for reform in reforms:
@@ -196,32 +189,43 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
                     # Add fixed embedding sampler if allowed
                     if best_embed:
-                        fail = 0
-                        min_length = X.number_of_nodes()
-                        for n_h in range(n_heur):
-                            h_embed = mm.find_embedding(
-                                G, X, timeout=time_limit, random_seed=n_h)
-                            count = 0
-                            for _, value in h_embed.items():
-                                count += len(value)
-                            if count == 0:
-                                fail += 1
-                            elif count < min_length:
-                                best_embed = h_embed
-                                min_length = count
-                            samplers['dwave'] = FixedEmbeddingComposite(
-                                DWaveSampler(), embedding=best_embed)
-                        else:
-                            samplers.pop('dwave', None)
+                        # fail = 0
+                        # min_length = X.number_of_nodes()
+                        # for n_h in range(n_heur):
+                        #     h_embed = mm.find_embedding(
+                        #         G, X, timeout=time_limit, random_seed=n_h)
+                        #     count = 0
+                        #     for _, value in h_embed.items():
+                        #         count += len(value)
+                        #     if count == 0:
+                        #         fail += 1
+                        #     elif count < min_length:
+                        #         best_embed = h_embed
+                        #         min_length = count
+                        #     samplers['dwave'] = FixedEmbeddingComposite(
+                        #         DWaveSampler(), embedding=best_embed)
+                        # else:
+                        #     samplers.pop('dwave', None)
+
+                        samplers['dwave'] = FixedEmbeddingComposite(
+                            DWaveSampler(), embedding=best_embedding[reform])
 
                     pickle_path = os.path.join(results_path, file_name, str(n), reform)
                     if not(os.path.exists(pickle_path)):
                         print('Pickled results directory ' + pickle_path +
                             ' does not exist. We will create it.')
                         os.makedirs(pickle_path)
+
                     
                     idx_i = 0
                     for ann_time in annealing_time:
+
+                        columns = ['formulation', 'chain_strength',
+                                'embedding', 'chain_breaks', 'chain_breaks_err', 'min_fraction',
+                                'embedding_fixed', 'chain_breaks_fixed', 'chain_breaks_err_fixed', 'min_fraction_fixed'
+                                ]
+                        results = pd.DataFrame(columns=columns)
+
                         results_name = instance + '_chains_' + \
                             reform + '_' + str(ann_time) + '.csv'
                         results_name = os.path.join(results_path, results_name)
@@ -313,7 +317,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                             plt.xlabel(
                                 'Chain strength (factor of maximum coefficient in Q)')
                             plt.title(
-                                'Chain break fraction vs. chain strength (t_ann = ' + str(ann_time) + ')')
+                                'Chain break fraction vs. chain strength (ref = ' + reform + ', t_ann = ' + str(ann_time) + ')')
 
                             plt.figure()
 
@@ -333,66 +337,41 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
                             plt.ylim([0, 1])
                             plt.xscale('log')
-                            plt.ylabel('Feasible solutions found')
+                            plt.ylabel('Minimal solution fraction')
                             plt.xlabel(
                                 'Chain strength (factor of maximum coefficient in Q)')
                             plt.title(
-                                'Solutions found fraction vs. chain strength (t_ann = ' + str(ann_time) + ')')
+                                'Solutions found fraction vs. chain strength (ref = ' + reform + ', t_ann = ' + str(ann_time) + ')')
                             plt.legend(['Random Embedding optimal',
-                                        'Random Embedding feasible',
-                                        'Best Embedding optimal',
-                                        'Best Embedding feasible'])
-
-
-                            for k in range(len(experiments)):
-                                fig, ax = plt.subplots()
-
-                                colormesh = ax.imshow(
-                                    min_matrix[:, 4:, k], vmin=0, vmax=1
-                                )
-                                ax.set_title(
-                                    'Minimum solutions probability embedding' + experiments[k])
-                                plt.xlabel(
-                                    'Chain strength (factor of maximum coefficient in Q)')
-                                plt.ylabel('Annealing time [microseconds]')
-                                fig.colorbar(colormesh, ax=ax)
-                                plt.yticks([0, 1, 2])
-                                fig.canvas.draw()
-
-                                labels_x = [item.get_text() for item in ax.get_xticklabels()]
-                                labels_x = chain_strenghts[3:]
-                                labels_y = [item.get_text() for item in ax.get_yticklabels()]
-                                labels_y = annealing_time
-
-                                ax.set_xticklabels(labels_x)
-                                ax.set_yticklabels(labels_y)
-
-                            # for k in range(len(experiments)):
-                            #     fig, ax = plt.subplots()
-
-                            #     colormesh = ax.imshow(
-                            #         opt_matrix[:, 4:, k], vmin=0, vmax=1
-                            #     )
-                            #     ax.set_title(
-                            #         'Minimal solutions probability embedding' + experiments[k])
-                            #     plt.xlabel(
-                            #         'Chain strength (factor of maximum coefficient in Q)')
-                            #     plt.ylabel('Annealing time [microseconds]')
-                            #     fig.colorbar(colormesh, ax=ax)
-                            #     plt.yticks([0, 1, 2])
-                            #     fig.canvas.draw()
-
-                            #     labels_x = [item.get_text() for item in ax.get_xticklabels()]
-                            #     labels_x = chain_strenghts[3:]
-                            #     labels_y = [item.get_text() for item in ax.get_yticklabels()]
-                            #     labels_y = annealing_time
-
-                            #     ax.set_xticklabels(labels_x)
-                            #     ax.set_yticklabels(labels_y)
-
-                            plt.show()
-
+                                        'Best Embedding optimal'])
                         idx_i += 1
+
+                    if draw_figures:
+                        for k in range(len(experiments)):
+                            fig, ax = plt.subplots()
+
+                            colormesh = ax.imshow(
+                                min_matrix[:, 4:, k], vmin=0, vmax=1
+                            )
+                            ax.set_title(
+                                'Minimum solutions probability embedding' + experiments[k] + ' (ref=' + reform + ')')
+                            plt.xlabel(
+                                'Chain strength (factor of maximum coefficient in Q)')
+                            plt.ylabel('Annealing time [microseconds]')
+                            fig.colorbar(colormesh, ax=ax)
+                            plt.yticks([0, 1, 2])
+                            fig.canvas.draw()
+
+                            labels_x = [item.get_text() for item in ax.get_xticklabels()]
+                            labels_x = chain_strenghts[3:]
+                            labels_y = [item.get_text() for item in ax.get_yticklabels()]
+                            labels_y = annealing_time
+
+                            ax.set_xticklabels(labels_x)
+                            ax.set_yticklabels(labels_y)
+
+                        plt.show()
+
                    
 
                     
@@ -465,20 +444,24 @@ if __name__ == "__main__":
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
+    # sampler = 'DW_2000Q_6'
+    sampler = 'Advantage_system1.1'
     TEST = True
-    prob = 0.25  # graph probability
-    K = 1
-    overwrite_pickles = False
-    draw_figures = False
-    # annealing_time=[2, 20, 200]  # Microseconds
-    # chain_strenghts=[0.1, 0.2, 0.5, 1, 2, 5, 10]
-    annealing_time=[20]  # Microseconds
-    chain_strenghts=[1]
-    
-    samples=1000
-    
-    annealing(instance=graph_type, TEST=TEST, prob=prob,
-              K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,
-              annealing_time=annealing_time,  # Microseconds
-              chain_strenghts=chain_strenghts,
-              samples=samples)
+    if TEST:
+        prob = 0.25  # graph probability
+        K = 0
+        draw_figures = True
+        annealing_time = [2, 20, 200]  # Microseconds
+        chain_strenghts = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10]
+        samples = 100
+        overwrite_pickles = False
+    else:
+        draw_figures = False
+        overwrite_pickles = False
+        annealing_time=[20]  # Microseconds
+        chain_strenghts = [1]
+        samples = 1000
+        prob = 0.25  # graph probability
+        K = 1
+
+    annealing(instance=graph_type, TEST=TEST, prob=prob,K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,annealing_time=annealing_time,chain_strenghts=chain_strenghts,samples=samples, sampler=sampler)
