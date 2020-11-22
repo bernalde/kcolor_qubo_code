@@ -93,7 +93,9 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
     # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
-    X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
+    # X = dnx.pegasus_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
+    X = nx.Graph()
+    X.add_edges_from(qpu_edges)
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
     
 
@@ -253,7 +255,7 @@ if __name__ == "__main__":
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
     TEST = True
-    prob = 0.25  # graph probability
-    K = 0
+    prob = 0.75  # graph probability
+    K = 5
     
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K)

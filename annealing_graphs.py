@@ -43,7 +43,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
     # Store the results in csv files
     dir_path = os.path.dirname(os.path.abspath(__file__))
     embedding_path = os.path.join(dir_path, "results/embedding/")
-    results_path = os.path.join(dir_path, "results/dwave/")
+    results_path = os.path.join(dir_path, "results/dwave_chimera/")
 
     if instance == 'spreadsheet':
         # spreadsheet_name = "erdos_" + \
@@ -102,8 +102,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
         n_heur = 1000
 
     # Graph corresponding to D-Wave 2000Q or Pegasus
-    # qpu = DWaveSampler(solver='DW_2000Q_6')
-    qpu = DWaveSampler(solver='Advantage_system1.1')
+    qpu = DWaveSampler(solver='DW_2000Q_6')
+    # qpu = DWaveSampler(solver='Advantage_system1.1')
     qpu_edges = qpu.edgelist
     qpu_nodes = qpu.nodelist
     # X = dnx.chimera_graph(16, node_list=qpu_nodes, edge_list=qpu_edges)
@@ -467,7 +467,7 @@ if __name__ == "__main__":
     graph_type = 'spreadsheet'
     TEST = True
     prob = 0.25  # graph probability
-    K = 0
+    K = 1
     overwrite_pickles = False
     draw_figures = False
     # annealing_time=[2, 20, 200]  # Microseconds
@@ -475,7 +475,7 @@ if __name__ == "__main__":
     annealing_time=[20]  # Microseconds
     chain_strenghts=[1]
     
-    samples=100
+    samples=1000
     
     annealing(instance=graph_type, TEST=TEST, prob=prob,
               K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,
