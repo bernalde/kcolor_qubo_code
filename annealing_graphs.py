@@ -470,7 +470,7 @@ if __name__ == "__main__":
         annealing_time = [2, 20, 200]  # Microseconds
         chain_strenghts = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10]
         samples = 1000
-        overwrite_pickles = True
+        overwrite_pickles = False
     else:
         draw_figures = False
         overwrite_pickles = True
