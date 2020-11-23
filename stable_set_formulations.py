@@ -5,7 +5,7 @@ from scipy.sparse import hstack, vstack, eye, diags, identity, bmat, triu
 from six import iteritems
 
 
-def proposed(Y, weight=None, M=2.0, draw=False):
+def nonlinear(Y, weight=None, M=2.0, draw=False):
     """ Return the QUBO with ground states corresponding to a maximum weighted independent set.
     The QUBO is defined by the proposed reformulation of the stable set problem of a given initial graph Y(V,E).
     The problem becomes: max e1'*x - x'*A*x, where x is the vector of binary variables being the indicators of the nodes
@@ -52,21 +52,26 @@ def proposed(Y, weight=None, M=2.0, draw=False):
     # is in S and v_n = 0 otherwise.
     # We call the matrix defining our QUBO problem Q.
     # On the diagonal, we assign the linear bias for each node to be the negative of its weight.
-    # This means that each node is biased towards being in S. Weights are scaled to a maximum of 1.
+    # This means that each node is biased towards being in S.
     # Negative weights are considered 0.
     # On the off diagonal, we assign the off-diagonal terms of Q to be 2. Thus, if both
     # nodes are in S, the overall energy is increased by 2.
-    cost = dict(Y.nodes(data=weight, default=1))
-    scale = max(cost.values())
-    Q = {(node, node): min(-cost[node] / scale, 0.0) for node in Y}
+
+    # Start by removing self-edges (learnt the hard way)
+    Y.remove_edges_from(nx.selfloop_edges(Y))
+
+    cost = dict(Y.nodes(data='weight', default=1))
+    Q = {(node, node): -cost[node] for node in Y}
     Q.update({edge: M for edge in Y.edges})
 
     offset = 0.0
 
     if draw:
         Z = nx.Graph()
-        Z.add_nodes_from(((u, {'weight': bias}) for (u, u), bias in iteritems(Q)))
-        Z.add_edges_from(((u, v, {'weight': bias}) for (u, v), bias in iteritems(Q)))
+        Z.add_nodes_from(((u, {'weight': bias})
+                          for (u, u), bias in iteritems(Q)))
+        Z.add_edges_from(((u, v, {'weight': bias})
+                          for (u, v), bias in iteritems(Q)))
         pos = nx.spring_layout(Z)
         edge_labels = dict([((u, v), d['weight'])
                             for u, v, d in Z.edges(data=True)])
@@ -78,7 +83,7 @@ def proposed(Y, weight=None, M=2.0, draw=False):
     return Q, offset
 
 
-def laserre(Y, weight=None, M=None, draw=False):
+def linear(Y, weight=None, M=2.0, draw=False):
     """
     laserre_no_diag(Y):
     Returns a graph defined by the Lasserre reformulation of the stable set problem of a given initial graph Y(V,E).
@@ -124,7 +129,7 @@ def laserre(Y, weight=None, M=None, draw=False):
     # is in S and v_n = 0 otherwise.
     # We call the matrix defining our QUBO problem Q.
     # On the diagonal, we assign the linear bias for each node to be the negative of its weight.
-    # This means that each node is biased towards being in S. Weights are scaled to a maximum of 1.
+    # This means that each node is biased towards being in S.
     # Negative weights are considered 0.
     # On the off diagonal, we assign the off-diagonal terms of Q to be 2. Thus, if both
     # nodes are in S, the overall energy is increased by 2.
@@ -132,9 +137,12 @@ def laserre(Y, weight=None, M=None, draw=False):
     if M is None:
         M = 2 * Y.number_of_nodes() + 1
 
-    cost = dict(Y.nodes(data=weight, default=1))
+    # Start by removing self-edges (learnt the hard way)
+    Y.remove_edges_from(nx.selfloop_edges(Y))
+
+    cost = dict(Y.nodes(data='weight', default=1))
     scale = max(cost.values())
-    Q = {(node, node): min(-cost[node] / scale, 0.0) for node in Y}
+    Q = {(node, node): -cost[node] for node in Y}
     for edge in Y.edges():
         (u, v) = tuple(sorted(edge))
         Q[(u, v)] = 2 * M
@@ -149,8 +157,10 @@ def laserre(Y, weight=None, M=None, draw=False):
 
     if draw:
         Z = nx.Graph()
-        Z.add_nodes_from(((u, {'weight': bias}) for (u, u), bias in iteritems(Q)))
-        Z.add_edges_from(((u, v, {'weight': bias}) for (u, v), bias in iteritems(Q)))
+        Z.add_nodes_from(((u, {'weight': bias})
+                          for (u, u), bias in iteritems(Q)))
+        Z.add_edges_from(((u, v, {'weight': bias})
+                          for (u, v), bias in iteritems(Q)))
         pos = nx.spring_layout(Z)
         edge_labels = dict([((u, v), d['weight'])
                             for u, v, d in Z.edges(data=True)])

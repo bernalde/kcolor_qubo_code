@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import random
 import os
 
-from stable_set_formulations import laserre, proposed
+from stable_set_formulations import linear, nonlinear
 from devil_graphs import devil_graphs
 
 import dimod
@@ -36,7 +36,6 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     else:
         chip = 'chimera'
 
-
     if instance == 'spreadsheet':
         # spreadsheet_name = "erdos_" + \
         #     str(int(100*prob)) + '_graphs_with_opt.xlsx'
@@ -48,7 +47,8 @@ def embedding(instance, TEST, prob=0.25, seed=42,
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
         N = input_data.shape[0]
-        file_name = instance + str(int(100*prob)) + '_embedding_' + chip + '_' + str(K)
+        file_name = instance + str(int(100*prob)) + \
+            '_embedding_' + chip + '_' + str(K)
         K = 1
     elif instance == 'erdos':
         # Parameters for random graphs
@@ -91,7 +91,8 @@ def embedding(instance, TEST, prob=0.25, seed=42,
         # Number of times the heuristic is run
         n_heur = 1000
 
-    columns = ['id', 'n_nodes', 'n_edges', 'nodes', 'edges', 'alpha', 'target', 'density_target']
+    columns = ['id', 'n_nodes', 'n_edges', 'nodes',
+               'edges', 'alpha', 'target', 'density_target']
     results = pd.DataFrame(columns=columns)
 
     # Graph corresponding to D-Wave 2000Q or Advantage_system1.1
@@ -104,8 +105,6 @@ def embedding(instance, TEST, prob=0.25, seed=42,
     X.add_nodes_from(qpu_nodes)
     X.add_edges_from(qpu_edges)
     # nx.write_edgelist(X, os.path.join(results_path,"X.edgelist"))
-    
-
 
     for k in range(K):
         for n in range(n0, N):
@@ -137,7 +136,8 @@ def embedding(instance, TEST, prob=0.25, seed=42,
             else:
                 # Random graphs
                 Input = nx.erdos_renyi_graph(n, prob)
-                temp['id'] = "random_" + str(n) + "_" + str(prob) + "_" + str(k)
+                temp['id'] = "random_" + \
+                    str(n) + "_" + str(prob) + "_" + str(k)
                 alpha = 0
 
             # Input graph parameters
@@ -156,13 +156,15 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                 reforms = ['n', 'l']
                 for ref in reforms:
                     if ref == 'n':
-                        Q, offset = proposed(Input, M=1, draw=False)
+                        Q, offset = nonlinear(Input, M=2.0, draw=False)
                     elif ref == 'l':
-                        Q, offset = laserre(Input, draw=False)
-                    
+                        Q, offset = linear(Input, M=2.0, draw=False)
+
                     # Graphs generation
-                    bqm = dimod.BinaryQuadraticModel.from_qubo(Q, offset=offset)
-                    edges = list(itertools.chain(bqm.quadratic, ((v, v) for v in bqm.linear)))
+                    bqm = dimod.BinaryQuadraticModel.from_qubo(
+                        Q, offset=offset)
+                    edges = list(itertools.chain(
+                        bqm.quadratic, ((v, v) for v in bqm.linear)))
 
                     G = nx.Graph()
                     G.add_edges_from(edges)
@@ -218,7 +220,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                         avgl = tot_count / (succ * n_heur)
                         temp['heur_avgl_' + ref] = avgl
                         temp['heur_stdevl_' +
-                                ref] = statistics.stdev(h_lengths)
+                             ref] = statistics.stdev(h_lengths)
                     temp['heur_avgt_' + ref] = np.median(h_times)
                     temp['heur_best_embed_' + ref] = best_embed
                     temp['heur_best_length_' + ref] = min_length
@@ -228,25 +230,24 @@ def embedding(instance, TEST, prob=0.25, seed=42,
                     # Fully connected graph embedding happening here
                     # if len(Q) <= 63:
                     # if len(Q) <= 128:
-                        # full_embed = chimera.find_clique_embedding(
-                        #     len(Q), 16, target_edges=qpu_edges)
-                        # full_embed = pegasus.find_clique_embedding(
-                        #     len(Q), m=16)
-                        # end = time.time() - start
-                        # count = 0
-                        # tot_count = 0
-                        # for _, value in full_embed.items():
-                        #     count += len(value)
-                        # tot_count += count
+                    # full_embed = chimera.find_clique_embedding(
+                    #     len(Q), 16, target_edges=qpu_edges)
+                    # full_embed = pegasus.find_clique_embedding(
+                    #     len(Q), m=16)
+                    # end = time.time() - start
+                    # count = 0
+                    # tot_count = 0
+                    # for _, value in full_embed.items():
+                    #     count += len(value)
+                    # tot_count += count
 
-                        # temp['full_embed_' + ref] = full_embed
-                        # temp['full_length_' + ref] = tot_count
-                        # temp['full_time_' + ref] = end
+                    # temp['full_embed_' + ref] = full_embed
+                    # temp['full_length_' + ref] = tot_count
+                    # temp['full_time_' + ref] = end
                     # else:
-                        # temp['full_embed_' + ref] = 'NaN'
-                        # temp['full_length_' + ref] = 'NaN'
-                        # temp['full_time_' + ref] = 'NaN'
-
+                    # temp['full_embed_' + ref] = 'NaN'
+                    # temp['full_length_' + ref] = 'NaN'
+                    # temp['full_time_' + ref] = 'NaN'
 
             results = results.append(temp, ignore_index=True)
 
@@ -254,7 +255,7 @@ def embedding(instance, TEST, prob=0.25, seed=42,
 
     sol_total = pd.DataFrame.from_dict(results)
 
-    sol_total.to_excel(os.path.join(results_path,file_name + ".xlsx"))
+    sol_total.to_excel(os.path.join(results_path, file_name + ".xlsx"))
 
 
 if __name__ == "__main__":
@@ -266,7 +267,7 @@ if __name__ == "__main__":
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
     TEST = True
-    prob = 0.25  # graph probability
+    prob = 0.75  # graph probability
     K = 0
-    
+
     embedding(instance=graph_type, TEST=TEST, prob=prob, K=K, sampler=sampler)
