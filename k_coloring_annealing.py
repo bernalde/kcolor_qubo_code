@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 import itertools
 import ast
+import sys, getopt
 
 
 from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
@@ -494,12 +495,40 @@ def plot_samples(results, title=None):
     plt.show()
 
 
-if __name__ == "__main__":
+def main(argv):
+
+    k = 2
+    chip = 'pegasus'
+    prob = 0.25
+    K = 0
+
+    try:
+        opts, args = getopt.getopt(argv, "hk:c:p:s:", ["colors=", "chip=", "prob=", "spread="])
+    except getopt.GetoptError:
+        print('k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet>')
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt == '-h':
+            print(
+                'k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet>')
+            sys.exit()
+        elif opt in ("-k", "--colors"):
+            k = int(arg)
+        elif opt in ("-c", "--chip"):
+            chip = arg
+        elif opt in ("-p", "--prob"):
+            prob = float(arg)/100
+        elif opt in ("-s", "--spread"):
+            K = int(arg)
 
     # graph_type = 'erdos'
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
+    print(k, chip, prob, K)
+
+
     TEST = False
     if TEST:
         k = 2
@@ -513,7 +542,6 @@ if __name__ == "__main__":
         c2 = [1.0, 2.0, 5.0]
         overwrite_pickles = False
     else:
-        k = 2
         draw_figures = False
         overwrite_pickles = False
         annealing_time = [20]  # Microseconds
@@ -521,12 +549,17 @@ if __name__ == "__main__":
         samples = 1000
         c1 = [1.0, 2.0, 5.0]
         c2 = [1.0, 2.0, 5.0]
-        prob = 0.25  # graph probability
-        K = 0
 
-    sampler = 'DW_2000Q_6'
-    # sampler = 'Advantage_system1.1'
+    if chip == 'chimera':
+        sampler = 'DW_2000Q_6'
+    else:
+        sampler = 'Advantage_system1.1'
+
     annealing(k=k, instance=graph_type, TEST=TEST, prob=prob, K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,
               annealing_time=annealing_time, chain_strengths=chain_strengths,
               c1=c1,
               c2=c2, samples=samples, sampler=sampler)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
