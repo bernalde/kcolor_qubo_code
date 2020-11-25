@@ -65,6 +65,9 @@ def annealing(instance, TEST, prob=0.25, seed=42,
         #     str(int(100*prob)) + '_graphs_' + str(K) + '.xlsx'
         spreadsheet_name = instance + \
             str(int(100*prob)) + '_embedding_' + chip + '_' + str(K) + '.xlsx'
+        # spreadsheet_name = instance + \
+        #     str(int(100*prob)) + '_embedding_' + str(k) + \
+        #     '_' + chip + '_' + str(K) + '.xlsx'
         spreadsheet_name = os.path.join(embedding_path, spreadsheet_name)
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
@@ -286,7 +289,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                     pickle_name = os.path.join(
                                         pickle_path, pickle_name)
                                     if os.path.exists(pickle_name) and not overwrite_pickles:
-                                        print(pickle_name)
+                                        # print(pickle_name)
                                         response = pickle.load(
                                             open(pickle_name, "rb"))
                                         if response is None:
