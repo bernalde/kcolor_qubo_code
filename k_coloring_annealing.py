@@ -20,7 +20,8 @@ import numpy as np
 import pandas as pd
 import itertools
 import ast
-import sys, getopt
+import sys
+import getopt
 
 
 from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
@@ -40,7 +41,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
               c1=[1.0, 2.0, 5.0],
               c2=[1.0, 2.0, 5.0],
               k=2,
-              samples=100, sampler='Advantage_system1.1'):
+              samples=100, sampler='Advantage_system1.1', best_embed=False):
 
     if sampler == 'Advantage_system1.1':
         chip = 'pegasus'
@@ -64,11 +65,14 @@ def annealing(instance, TEST, prob=0.25, seed=42,
         #     str(int(100*prob)) + '_graphs.xlsx'
         # spreadsheet_name = "erdos_" + \
         #     str(int(100*prob)) + '_graphs_' + str(K) + '.xlsx'
-        spreadsheet_name = instance + \
-            str(int(100*prob)) + '_embedding_' + chip + '_' + str(K) + '.xlsx'
-        # spreadsheet_name = instance + \
-        #     str(int(100*prob)) + '_embedding_' + str(k) + \
-        #     '_' + chip + '_' + str(K) + '.xlsx'
+        if best_embed:
+            spreadsheet_name = instance + \
+                str(int(100*prob)) + '_embedding_' + str(k) + \
+                '_' + chip + '_' + str(K) + '.xlsx'
+        else:
+            spreadsheet_name = instance + \
+                str(int(100*prob)) + '_embedding_' + \
+                chip + '_' + str(K) + '.xlsx'
         spreadsheet_name = os.path.join(embedding_path, spreadsheet_name)
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
@@ -177,8 +181,6 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 embeddable = dict.fromkeys(reforms, True)
 
                 # Import embeddings
-                best_embed = False
-
                 if best_embed:
                     best_embedding = dict.fromkeys(reforms, {})
                     best_embedding['n'] = ast.literal_eval(
@@ -204,14 +206,16 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
                 for reform in embeddable_reforms:
 
-                    for [rho1,rho2] in itertools.product(c1,c2):
+                    for [rho1, rho2] in itertools.product(c1, c2):
 
                         opt_matrix = np.zeros(
                             [len(annealing_time), len(chain_strengths), len(experiments)])
                         if reform == 'n':
-                            Q, offset = nonlinear(Input, k=k, c1=rho1, c2=rho2, draw=False)
+                            Q, offset = nonlinear(
+                                Input, k=k, c1=rho1, c2=rho2, draw=False)
                         elif reform == 'l':
-                            Q, offset = linear(Input, k=k, c1=rho1, c2=rho2, draw=False)
+                            Q, offset = linear(
+                                Input, k=k, c1=rho1, c2=rho2, draw=False)
 
                         bqm = dimod.BinaryQuadraticModel.from_qubo(
                             Q, offset=offset)
@@ -375,7 +379,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                 plt.xlabel(
                                     'Chain strength (factor of maximum coefficient in Q)')
                                 plt.title(
-                                    'Chain break fraction vs. chain strength  \n (ref = ' + reform + ', t_ann = ' + str(ann_time) + ', c1 = ' + str(int(rho1))  + ', c2 = ' + str(int(rho2)) + ')')
+                                    'Chain break fraction vs. chain strength  \n (ref = ' + reform + ', t_ann = ' + str(ann_time) + ', c1 = ' + str(int(rho1)) + ', c2 = ' + str(int(rho2)) + ')')
 
                                 plt.figure()
 
@@ -504,7 +508,8 @@ def main(argv):
     best_embed = False
 
     try:
-        opts, args = getopt.getopt(argv, "hk:c:p:s:b:", ["colors=", "chip=", "prob=", "spread="])
+        opts, args = getopt.getopt(argv, "hk:c:p:s:b:", [
+                                   "colors=", "chip=", "prob=", "spread="])
     except getopt.GetoptError:
         print('k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet> -b <1 if best_embed>')
         sys.exit(2)
@@ -535,7 +540,6 @@ def main(argv):
     else:
         print(k, chip, prob, K)
 
-
     TEST = False
     if TEST:
         k = 2
@@ -565,7 +569,7 @@ def main(argv):
     annealing(k=k, instance=graph_type, TEST=TEST, prob=prob, K=K, overwrite_pickles=overwrite_pickles, draw_figures=draw_figures,
               annealing_time=annealing_time, chain_strengths=chain_strengths,
               c1=c1,
-              c2=c2, samples=samples, sampler=sampler)
+              c2=c2, samples=samples, sampler=sampler, best_embed=best_embed)
 
 
 if __name__ == "__main__":
