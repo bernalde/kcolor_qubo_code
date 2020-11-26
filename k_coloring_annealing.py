@@ -501,17 +501,18 @@ def main(argv):
     chip = 'pegasus'
     prob = 0.25
     K = 0
+    best_embed = False
 
     try:
-        opts, args = getopt.getopt(argv, "hk:c:p:s:", ["colors=", "chip=", "prob=", "spread="])
+        opts, args = getopt.getopt(argv, "hk:c:p:s:b:", ["colors=", "chip=", "prob=", "spread="])
     except getopt.GetoptError:
-        print('k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet>')
+        print('k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet> -b <1 if best_embed>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
             print(
-                'k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet>')
+                'k_coloring_annealing.py -k <colors> -c <chip> -p <probability> -s <spreadsheet> -b <1 if best_embed>')
             sys.exit()
         elif opt in ("-k", "--colors"):
             k = int(arg)
@@ -521,12 +522,18 @@ def main(argv):
             prob = float(arg)/100
         elif opt in ("-s", "--spread"):
             K = int(arg)
+        elif opt in ("-b", "--best_embed"):
+            if int(arg) == 1:
+                best_embed = True
 
     # graph_type = 'erdos'
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
-    print(k, chip, prob, K)
+    if best_embed:
+        print(k, chip, prob, K, 'best_embed')
+    else:
+        print(k, chip, prob, K)
 
 
     TEST = False
