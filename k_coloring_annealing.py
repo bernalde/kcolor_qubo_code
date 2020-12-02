@@ -176,8 +176,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
                 # Problem reformulations
                 # Nonlinear and Linear (Laserre) reformulation
-                # reforms = ['n', 'l']
-                reforms = ['l']
+                reforms = ['n', 'l']
+                # reforms = ['l']
                 embeddable = dict.fromkeys(reforms, True)
 
                 # Import embeddings
