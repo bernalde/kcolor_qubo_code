@@ -2,6 +2,7 @@ import itertools
 import math
 import os
 import sys
+import getopt
 from time import time  # timing package
 
 import dimod
@@ -37,7 +38,7 @@ def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwri
         results_path = os.path.join(mingap_path, "eigenvalues_l")
 
     solfile = os.path.join(mingap_path, "erdos_" + str(
-        formulation) + "_" + str(int(100*prob)) + "_k" + str(colors) + "_c1" + str(c1) + "_c2" + str(c2))
+        formulation) + "_" + str(int(100*prob)) + "_k" + str(colors) + "_c1" + str(int(c1)) + "_c2" + str(int(c2)))
 
 
 
@@ -112,10 +113,10 @@ def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwri
 
         eigenfilename = "erdos_" + \
             str(prob) + "_" + str(k) + "_k" + str(colors) + \
-            "_c1" + str(c1) + "_c2" + str(c2)
+            "_c1" + str(int(c1)) + "_c2" + str(int(c2))
         idxfilename = "erdos_idx_" + \
             str(prob) + "_" + str(k) + "_k" + str(colors) + \
-            "_c1" + str(c1) + "_c2" + str(c2)
+            "_c1" + str(int(c1)) + "_c2" + str(int(c2))
 
         print(eigenfilename)
 
@@ -281,6 +282,7 @@ def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwri
         solutions = solutions.append(temp, ignore_index=True)
         solutions.to_csv(solfile + ".csv")
     sol_total = pd.DataFrame.from_dict(solutions)
+    sol_total.to_csv(solfile + ".csv")
     sol_total.to_excel(solfile + ".xlsx")
 
 
