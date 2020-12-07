@@ -14,20 +14,20 @@ from scipy import sparse
 from scipy.sparse.linalg import eigs
 
 from devil_graphs import devil_graphs
-from stable_set_formulations import laserre, proposed
+from k_coloring_formulations import linear, nonlinear
 
 
-def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, draw_plots, generate_plots):
+def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwrite_files, draw_plots, generate_plots):
 
     four_node_edges = [[],
-                    [(0, 1)],
-                    [(0, 1), (0, 3)], [(0, 1), (2, 3)],
-                    [(0, 1), (1, 2), (2, 3)], [(0, 1), (0, 2), (0, 3)], [(0, 1), (1, 2), (2, 0)],
-                    [(0, 1), (1, 2), (2, 3), (3, 0)], [(0, 1), (1, 2), (2, 0), (3, 0)],
-                    [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)],
-                    [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2), (1, 3)]
-                    ]
-
+                       [(0, 1)],
+                       [(0, 1), (0, 3)], [(0, 1), (2, 3)],
+                       [(0, 1), (1, 2), (2, 3)], [
+        (0, 1), (0, 2), (0, 3)], [(0, 1), (1, 2), (2, 0)],
+        [(0, 1), (1, 2), (2, 3), (3, 0)], [(0, 1), (1, 2), (2, 0), (3, 0)],
+        [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)],
+        [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2), (1, 3)]
+    ]
 
     dir_path = os.path.dirname(os.path.abspath(__file__))
     mingap_path = os.path.join(dir_path, "results/mingap/")
@@ -36,9 +36,10 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
     elif formulation == 'linear':
         results_path = os.path.join(mingap_path, "eigenvalues_l")
 
-
     solfile = os.path.join(mingap_path, "erdos_" + str(
-        formulation) + "_" + str(int(100*prob)) + "_" + str(c1))
+        formulation) + "_" + str(int(100*prob)) + "_k" + str(colors) + "_c1" + str(c1) + "_c2" + str(c2))
+
+
 
     # Pauli matrices
 
@@ -61,9 +62,8 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
 
     # List of s values you want to use, between 0 and 1
 
-
     df = pd.read_excel(os.path.join(dir_path, "09-1192A-C_DW_2000Q_2_1_processor-annealing-schedule.xlsx"),
-                    sheet_name='DW_2000Q_2_processor-annealing-')
+                       sheet_name='DW_2000Q_2_processor-annealing-')
 
     s_list = df['s']
 
@@ -87,7 +87,6 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
             ops.append(Id)
         return nested_kronecker(ops)
 
-
     columns = ['id', 'eigenval', 'mingap']
     solutions = pd.DataFrame(columns=columns)
 
@@ -100,7 +99,7 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
         G = nx.erdos_renyi_graph(n=nodes, p=prob, seed=k)
         temp = dict()
 
-        tolerance = 1 #GHz
+        tolerance = 1  # GHz
         idx_start = 0
         idx_end = len(s_list)
         idx_interval = 100
@@ -111,8 +110,12 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
         mingap_ss = []
         index_ss = []
 
-        eigenfilename = "erdos_" + str(prob) + "_" + str(k) + "_M" + str(c1)
-        idxfilename = "erdos_idx_" + str(prob) + "_" + str(k) + "_M" + str(c1)
+        eigenfilename = "erdos_" + \
+            str(prob) + "_" + str(k) + "_k" + str(colors) + \
+            "_c1" + str(c1) + "_c2" + str(c2)
+        idxfilename = "erdos_idx_" + \
+            str(prob) + "_" + str(k) + "_k" + str(colors) + \
+            "_c1" + str(c1) + "_c2" + str(c2)
 
         print(eigenfilename)
 
@@ -135,20 +138,20 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
             mingap = min(gap)
             mingap_idx = np.argmin(gap)
             mingap_s = s_plot[mingap_idx]
-        else:            
-        # Calculate full Hamiltonian for the s values in your list and get the eigenvalues and gap
+        else:
+            # Calculate full Hamiltonian for the s values in your list and get the eigenvalues and gap
             print('Running eigenvalues')
             break
 
             # Find the maximum independent set, which is known in this case to be of length 3
             if formulation == 'nonlinear':
-                Q, offset = proposed(G, M=c1)
+                Q, offset = nonlinear(G, k=colors, c1=c1, c2=c2)
             elif formulation == 'linear':
-                Q, offset = laserre(G, M=c1)
+                Q, offset = linear(G, k=colors, c1=c1, c2=c2)
             bqm = dimod.BinaryQuadraticModel.from_qubo(Q, offset=offset)
             h, J, offset = bqm.to_ising()
             indices = dict((key, idx)
-                        for (idx, key) in enumerate(bqm.linear.keys()))
+                           for (idx, key) in enumerate(bqm.linear.keys()))
 
             # Number of qubits
             n = len(list(bqm.linear))
@@ -173,10 +176,12 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
                     if df.loc[idx, 's'] in mingap_ss or idx in index_ss:
                         pass
                     else:
-                        H = df.loc[idx, 'A(s) (GHz)'] * Hd + df.loc[idx, 'B(s) (GHz)'] * Hp
+                        H = df.loc[idx, 'A(s) (GHz)'] * Hd + \
+                            df.loc[idx, 'B(s) (GHz)'] * Hp
                         if n >= 16:
                             sH = sparse.csc_matrix(H)
-                            eig = eigs(sH, 10, which='SR', tol=1e-3, return_eigenvectors=False)
+                            eig = eigs(sH, 10, which='SR', tol=1e-3,
+                                       return_eigenvectors=False)
                         else:
                             eig = la.eigvalsh(H)
                         eig = np.sort(eig.real)
@@ -184,7 +189,8 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
                         # np.append(eig, eigenvals, axis=0)
                         s_plot.append(df.loc[idx, 's'])
 
-                s_plot, eigenvals = (list(t) for t in zip(*sorted(zip(s_plot, eigenvals))))
+                s_plot, eigenvals = (list(t)
+                                     for t in zip(*sorted(zip(s_plot, eigenvals))))
 
                 eigenvalues = np.array(eigenvals)
 
@@ -220,8 +226,11 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
             np.save(idxfile, s_plot)
 
         temp['id'] = eigenfilename
+        temp['k'] = colors
         temp['eigenval'] = i
         temp['mingap'] = mingap
+        temp['c1'] = c1
+        temp['c2'] = c2
 
         if generate_plots:
 
@@ -238,7 +247,7 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
             plt.ylabel('Hamiltonian eigenvalues')
             plt.xlim(0, 1)
             plt.savefig(os.path.join(results_path, "erdos_" + str(prob) +
-                                    "_" + str(k) + "_M" + str(c1) + "all_eigs.png"))
+                                     "_" + str(k) + "_M" + str(c1) + "all_eigs.png"))
             #
             plt.figure(2)
             plt.plot(s_plot, eigenvals, '0.75')
@@ -249,7 +258,7 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
             plt.ylabel('Hamiltonian eigenvalues')
             plt.xlim(0, 1)
             plt.savefig(os.path.join(results_path, "erdos_" + str(prob) +
-                                    "_" + str(k) + "_M" + str(c1) + "eigs.png"))
+                                     "_" + str(k) + "_c1" + str(c1) + "_c2" + str(c2) + "eigs.png"))
 
             plt.figure(3)
             plt.plot(s_plot, gap, '*')
@@ -260,7 +269,7 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
             plt.xlim(0, 1)
             plt.ylim(0, None)
             plt.savefig(os.path.join(results_path, "erdos_" + str(prob) +
-                                    "_" + str(k) + "_M" + str(c1) + "gap.png"))
+                                     "_" + str(k) + "_c1" + str(c1) + "_c2" + str(c2) + "gap.png"))
 
             if draw_plots:
                 plt.show()
@@ -275,23 +284,62 @@ def eigen_values_search(formulation, prob, nodes, K0, K, c1, overwrite_files, dr
     sol_total.to_excel(solfile + ".xlsx")
 
 
-if __name__ == "__main__":
-    # formulation = 'nonlinear'
-    # formulation = 'linear'
-    # prob = 0.25
+def main(argv):
+
+    colors = 1
+    prob = 0.25
+    c1 = 1.0
+    c2 = 1.0
+
+    try:
+        opts, args = getopt.getopt(argv, "hk:p:a:b:", [
+                                   "colors=", "prob=", "c1=", "c2="])
+    except getopt.GetoptError:
+        print('eigen_values_search.py -k <colors> -p <probability> -a <c1> -b <c2>')
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt == '-h':
+            print(
+                'eigen_values_search.py -k <colors> -p <probability> -a <c1> -b <c2>')
+            sys.exit()
+        elif opt in ("-k", "--colors"):
+            colors = int(arg)
+        elif opt in ("-p", "--prob"):
+            prob = float(arg)/100
+        elif opt in ("-a", "--c1"):
+            c1 = float(arg)
+        elif opt in ("-b", "--c2"):
+            c1 = float(arg)
+        elif opt in ("-b", "--best_embed"):
+            c2 = float(arg)
+
     nodes = 5
     K0 = 0
     K = 100
-    # c1 = 1
     overwrite_files = False
     draw_plots = False
     generate_plots = False
-    c1s = [1,2,5]
-    probs = [0.25, 0.50, 0.75]
-    formulations = ['nonlinear', 'linear']
+    formulations = ['nonlinear']
+    # formulations = ['nonlinear', 'linear']
 
-    for c1 in c1s:
-        for prob in probs:
-            for formulation in formulations:
-                eigen_values_search(formulation, prob, nodes, K0, K,
-                                    c1, overwrite_files, draw_plots, generate_plots)
+    TEST = True
+    if TEST:
+        colors = 1
+        prob = 0.25
+        c1 = 1.0
+        c2 = 1.0
+    else:
+        pass
+
+    print(colors, prob, c1, c2)
+
+    for formulation in formulations:
+        eigen_values_search(formulation=formulation, prob=prob,
+                            nodes=nodes, K0=K0, K=K, colors=colors, c1=c1, c2=c2,
+                            overwrite_files=overwrite_files, draw_plots=draw_plots,
+                            generate_plots=generate_plots)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
