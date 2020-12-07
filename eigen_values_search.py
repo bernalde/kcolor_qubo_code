@@ -38,9 +38,8 @@ def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwri
         results_path = os.path.join(mingap_path, "eigenvalues_l")
 
     solfile = os.path.join(mingap_path, "erdos_" + str(
-        formulation) + "_" + str(int(100*prob)) + "_k" + str(colors) + "_c1" + str(int(c1)) + "_c2" + str(int(c2)))
-
-
+        formulation) + "_" + str(int(100*prob)) + "_k_" + str(colors) + \
+            "_c1_" + str(int(c1)) + "_c2_" + str(int(c2)))
 
     # Pauli matrices
 
@@ -112,11 +111,11 @@ def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwri
         index_ss = []
 
         eigenfilename = "erdos_" + \
-            str(prob) + "_" + str(k) + "_k" + str(colors) + \
-            "_c1" + str(int(c1)) + "_c2" + str(int(c2))
+            str(prob) + "_" + str(k) + "_k_" + str(colors) + \
+            "_c1_" + str(int(c1)) + "_c2_" + str(int(c2))
         idxfilename = "erdos_idx_" + \
-            str(prob) + "_" + str(k) + "_k" + str(colors) + \
-            "_c1" + str(int(c1)) + "_c2" + str(int(c2))
+            str(prob) + "_" + str(k) + "_k_" + str(colors) + \
+            "_c1_" + str(int(c1)) + "_c2_" + str(int(c2))
 
         print(eigenfilename)
 
@@ -142,7 +141,6 @@ def eigen_values_search(formulation, prob, nodes, K0, K, colors, c1, c2, overwri
         else:
             # Calculate full Hamiltonian for the s values in your list and get the eigenvalues and gap
             print('Running eigenvalues')
-            break
 
             # Find the maximum independent set, which is known in this case to be of length 3
             if formulation == 'nonlinear':
@@ -312,8 +310,6 @@ def main(argv):
         elif opt in ("-a", "--c1"):
             c1 = float(arg)
         elif opt in ("-b", "--c2"):
-            c1 = float(arg)
-        elif opt in ("-b", "--best_embed"):
             c2 = float(arg)
 
     nodes = 5
@@ -325,7 +321,7 @@ def main(argv):
     formulations = ['nonlinear']
     # formulations = ['nonlinear', 'linear']
 
-    TEST = True
+    TEST = False
     if TEST:
         colors = 1
         prob = 0.25
