@@ -7,3 +7,5 @@ results/dwave_chimera/*.csv
 results/dwave_pegasus/*.csv
 *.p
 ~$*
+*.npy
+*.csv

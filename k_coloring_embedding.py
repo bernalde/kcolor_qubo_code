@@ -264,11 +264,11 @@ if __name__ == "__main__":
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
-    k = 2
+    k = 5
 
     TEST = True
-    prob = 0.50  # graph probability
-    K = 5
+    prob = 0.25  # graph probability
+    K = 4
 
     # sampler = 'DW_2000Q_6'
     sampler = 'Advantage_system1.1'
