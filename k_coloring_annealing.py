@@ -146,10 +146,7 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 input_edges = ast.literal_eval(input_data.edges[n])
                 Input.add_edges_from(input_edges)
                 alpha = 0
-                temp['id'] = str(K) + "_" + str(n)
-                temp['n_nodes'] = input_data.n_nodes[n]
-                temp['n_edges'] = input_data.n_edges[n]
-
+                
             elif instance == "cycle":
                 # Cycle graphs
                 Input = nx.cycle_graph(n)
@@ -268,6 +265,10 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                 results_path, results_name)
 
                             temp = dict()
+                            temp['id'] = str(K) + "_" + str(n)
+                            temp['n_nodes'] = input_data.n_nodes[n]
+                            temp['n_edges'] = input_data.n_edges[n]
+
 
                             idx_j = 0
                             for c in chain_strengths:

@@ -267,8 +267,8 @@ if __name__ == "__main__":
     k = 5
 
     TEST = True
-    prob = 0.25  # graph probability
-    K = 4
+    prob = 0.75  # graph probability
+    K = 5
 
     # sampler = 'DW_2000Q_6'
     sampler = 'Advantage_system1.1'
