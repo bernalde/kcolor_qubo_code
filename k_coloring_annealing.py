@@ -146,6 +146,9 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 input_edges = ast.literal_eval(input_data.edges[n])
                 Input.add_edges_from(input_edges)
                 alpha = 0
+                temp['id'] = str(K) + "_" + str(n)
+                temp['n_nodes'] = input_data.n_nodes[n]
+                temp['n_edges'] = input_data.n_edges[n]
 
             elif instance == "cycle":
                 # Cycle graphs
@@ -299,23 +302,23 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                                             open(pickle_name, "rb"))
                                         if response is None:
                                             embeddable[reform] = False
-                                    else:
-                                        # Here is where the D-Wave run happens
-                                        if kind == '_fixed' and best_embed:
-                                            response = samplers['dwave'].sample(
-                                                bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
-                                        elif kind == '':
-                                            try:
-                                                response = samplers['dwave_embed'].sample(
-                                                    bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
-                                            except ValueError as e:
-                                                embeddable[reform] = False
-                                                response = None
-                                                print(e)
-                                                print('error type: ', type(e))
+                                    # else:
+                                    #     # Here is where the D-Wave run happens
+                                    #     if kind == '_fixed' and best_embed:
+                                    #         response = samplers['dwave'].sample(
+                                    #             bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
+                                    #     elif kind == '':
+                                    #         try:
+                                    #             response = samplers['dwave_embed'].sample(
+                                    #                 bqm, num_reads=samples, return_embedding=True, chain_strength=chain_strength, annealing_time=ann_time)
+                                    #         except ValueError as e:
+                                    #             embeddable[reform] = False
+                                    #             response = None
+                                    #             print(e)
+                                    #             print('error type: ', type(e))
 
-                                        pickle.dump(response, open(
-                                            pickle_name, "wb"), protocol=pickle.HIGHEST_PROTOCOL)
+                                    #     pickle.dump(response, open(
+                                    #         pickle_name, "wb"), protocol=pickle.HIGHEST_PROTOCOL)
 
                                     if embeddable[reform]:
                                         temp['embedding' +
