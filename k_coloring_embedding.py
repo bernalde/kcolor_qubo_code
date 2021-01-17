@@ -268,12 +268,12 @@ if __name__ == "__main__":
     # graph_type = 'cycle'
     # graph_type = 'devil'
     graph_type = 'spreadsheet'
-    k = 2
+    k = 5
 
     TEST = True
     no_embed = True
     prob = 0.75  # graph probability
-    K = 4
+    K = 5
 
     sampler = 'DW_2000Q_6'
     # sampler = 'Advantage_system1.1'
