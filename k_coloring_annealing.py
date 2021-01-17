@@ -71,8 +71,8 @@ def annealing(instance, TEST, prob=0.25, seed=42,
                 '_' + chip + '_' + str(K) + '.xlsx'
         else:
             spreadsheet_name = instance + \
-                str(int(100*prob)) + '_embedding_' + \
-                chip + '_' + str(K) + '.xlsx'
+                str(int(100*prob)) + '_embedding_' + str(k) + \
+                '_' + chip + '_' + str(K) + '.xlsx'
         spreadsheet_name = os.path.join(embedding_path, spreadsheet_name)
         input_data = pd.read_excel(spreadsheet_name)
         n0 = 0
