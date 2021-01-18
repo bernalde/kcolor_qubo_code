@@ -2,7 +2,9 @@
 *.pyc
 results/embedding/*.csv
 results/k_coloring/2/dwave_chimera/*.csv
+results/k_coloring/5/dwave_chimera/*.csv
 results/k_coloring/2/dwave_pegasus/*.csv
+results/k_coloring/5/dwave_pegasus/*.csv
 results/dwave_chimera/*.csv
 results/dwave_pegasus/*.csv
 *.p
