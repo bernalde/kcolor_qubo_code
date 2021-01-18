@@ -291,10 +291,15 @@ def annealing(instance, TEST, prob=0.25, seed=42,
 
                                 idx_k = 0
                                 for kind in experiments:
-                                    pickle_name = "chain_str_" + \
-                                        str(c) + "_" + str(ann_time) + \
-                                        "_" + str(int(rho1)) + \
-                                        "_" + str(int(rho2)) + kind + ".p"
+                                    if k == 1:
+                                        pickle_name = "chain_str_" + \
+                                            str(c) + "_" + str(ann_time) + \
+                                            "_" + str(int(rho1)) + kind + ".p"
+                                    else:
+                                        pickle_name = "chain_str_" + \
+                                            str(c) + "_" + str(ann_time) + \
+                                            "_" + str(int(rho1)) + \
+                                            "_" + str(int(rho2)) + kind + ".p"
                                     pickle_name = os.path.join(
                                         pickle_path, pickle_name)
                                     if os.path.exists(pickle_name) and not overwrite_pickles:
@@ -564,6 +569,9 @@ def main(argv):
         samples = 1000
         c1 = [1.0, 2.0, 5.0]
         c2 = [1.0, 2.0, 5.0]
+
+    if k == 1:
+        c2 = [1.0]
 
     if chip == 'chimera':
         sampler = 'DW_2000Q_6'
